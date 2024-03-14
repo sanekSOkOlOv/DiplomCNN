@@ -22,6 +22,7 @@ The CNN model implemented in this project achieves an accuracy of 90% on the tes
 ```bash
 git clone https://github.com/sanekSOkOlOv/DiplomCNN.git
 cd DiplomCNN
+```
 
 ## Flask Application
 This project can be integrated into a Flask web application to serve as part of a clothing store website. Users can upload their own images, and the model will classify them to navigate to the appropriate section of the website (e.g., T-shirts, Dresses, Shoes).
