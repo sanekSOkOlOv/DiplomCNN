@@ -8,8 +8,14 @@
     <title>Shopping Cart</title>
 </head>
 <body>
-    <!-- Здесь можете добавить содержимое корзины, например: -->
-    <h1>Корзина товаров</h1>
+    <header>
+        <div class="logo">
+            <a href="/">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Логотип">
+            </a>
+        </div>
+    </header>
+    <h2>Корзина товаров</h2>
     <div id="cart-items">
         <!-- Здесь будет отображаться содержимое корзины -->
     </div>

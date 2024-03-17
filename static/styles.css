@@ -66,6 +66,23 @@ input[type="file"] {
 .button-upload label:hover img {
     cursor: pointer; /* Изменение курсора при наведении */
 }
+
+.button-upload img {
+    /* Задаем статичное положение изображения */
+    transition: transform 0.3s ease-in-out;
+    animation: none;
+}
+
+.button-upload label:hover img {
+    /* Анимация применяется только при наведении */
+    animation: none; /* Отключаем текущую анимацию */
+    animation: moveUp 1s infinite alternate; /* Применяем новую анимацию */
+}
+
+@keyframes moveUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-5px); }
+}
 /*________________________________________________________________________________________*/
 
 header {
@@ -84,6 +101,8 @@ header {
 }
 .logo img {
     max-height: 100px; /* Здесь указывается максимальная высота в пикселях */
+    animation: none; /* Отключаем текущую анимацию */
+    animation: moveUp 1s infinite alternate;
 }
 /*________________________________________________________________________________________*/
 
@@ -97,11 +116,15 @@ header {
     text-decoration: none;
     color: black;
     font-weight: bold;
+    transition: color 0.3s ease-in-out; /* Плавный переход цвета */
 }
 .catalog-link:hover {
     text-decoration: underline;
     font-weight: bold;
-    font-size: 17px;
+    background-image: repeating-conic-gradient(#553c9a 0%, #553c9a 10%, #ee4b2b 10%, #ee4b2b 20%, #00c2cb 20%, #00c2cb 30%);
+    -webkit-background-clip: text; /* Для поддержки веб-кит браузеров */
+    background-clip: text;
+    color: transparent;
 }
 /*________________________________________________________________________________________*/
 

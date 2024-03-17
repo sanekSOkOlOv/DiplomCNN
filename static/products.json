@@ -1,12 +1,12 @@
 [
     {
         "name": "Футболка",
-        "image": "путь_к_изображению_футболки",
+        "image": "/static/images/tshort1.jpeg",
         "price": 10.99
     },
     {
         "name": "Джинсы",
-        "image": "путь_к_изображению_джинс",
+        "image": "/static/images/jeans1.jpeg",
         "price": 29.99
     },
     {
