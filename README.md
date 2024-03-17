@@ -32,4 +32,5 @@ This project can be integrated into a Flask web application to serve as part of 
 - FashionMNIST_CNN.py: Jupyter Notebook containing the code for training, evaluation, and prediction.
 - FashionMNIST_CNN.h5: Trained model saved in HDF5 format.
 - app.py: Main program with Flask server
-- templates: Directory for files such as: HTML CSS scripts and the like
+- templates: The templates folder is for HTML templates only.
+- static: Static files (such as CSS, JavaScript, images) are usually stored in the static folder
