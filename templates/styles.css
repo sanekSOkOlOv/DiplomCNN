@@ -1,0 +1,32 @@
+.button-upload{
+
+    color: #000;
+    background-color: aqua;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+    /* Дополнительные стили по желанию */
+}
+/* Стили для каталога */
+.catalog {
+    text-align: center;
+    /* Дополнительные стили по желанию */
+}
+/* Стили для блока классификации изображений */
+.classification {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    /* Дополнительные стили по желанию */
+}

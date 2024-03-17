@@ -3,16 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Classification</title>
+    <title>Online Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Стили для горизонтального размещения элементов в заголовке */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>Image Classification</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept="image/*">
-        <input type="submit" value="Upload">
-    </form>
-    {% if message %}
-        <p>{{ message }}</p>
-    {% endif %}
+    <!-- Логотип -->
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Логотип">
+        </div>
+
+        <div class="catalog">
+            <h1>Каталог товаров</h1>
+            <!-- Здесь может быть ваш каталог товаров -->
+        </div>
+
+        <!-- Классификация изображений -->
+        <div class="classification">
+            <h2>Классификация изображений</h2>
+            <!-- Здесь может быть ваша форма для загрузки изображений и отображения результата классификации -->
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept="image/*">
+                <input type="submit" value="Загрузить">
+            </form>
+            {% if message %}
+                <p>{{ message }}</p>
+            {% endif %}
+        </div>
+    </header>
+    
 </body>
 </html>

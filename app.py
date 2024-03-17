@@ -10,6 +10,10 @@ from tensorflow.keras.models import load_model
 # Загрузка модели
 model = load_model('FashionMNIST_CNN.h5')
 
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+
 app = Flask(__name__)
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
@@ -48,7 +52,7 @@ def clear_uploads_folder():
 # Главная страница
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html') 
 
 # Обработка загрузки файла
 @app.route('/upload', methods=['POST'])
