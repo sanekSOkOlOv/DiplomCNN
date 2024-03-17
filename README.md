@@ -34,3 +34,4 @@ This project can be integrated into a Flask web application to serve as part of 
 - app.py: Main program with Flask server
 - templates: The templates folder is for HTML templates only.
 - static: Static files (such as CSS, JavaScript, images) are usually stored in the static folder
+- - products.json
