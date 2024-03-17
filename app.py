@@ -73,7 +73,9 @@ def upload_file():
     else:
         return render_template('index.html', message='Invalid file extension')
 
-
+@app.route('/cart')
+def cart():
+    return render_template('cart.html')
 # ------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     app.run(debug=True)

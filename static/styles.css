@@ -14,6 +14,7 @@ input[type="file"] {
     display: inline-block;
     margin-left: 10px;
 }
+/*________________________________________________________________________________________*/
 
 .button-upload {
     display: flex;
@@ -62,10 +63,10 @@ input[type="file"] {
     box-shadow: none;
     transform: translateY(0);
 }
-
 .button-upload label:hover img {
     cursor: pointer; /* Изменение курсора при наведении */
 }
+/*________________________________________________________________________________________*/
 
 header {
     display: flex;
@@ -73,6 +74,7 @@ header {
     align-items: center;
     background-color: #fbfbfb;
 }
+/*________________________________________________________________________________________*/
 
 .logo {
     float: left;
@@ -83,12 +85,26 @@ header {
 .logo img {
     max-height: 100px; /* Здесь указывается максимальная высота в пикселях */
 }
-/* Стили для каталога */
+/*________________________________________________________________________________________*/
+
 .catalog {
     text-align: center;
     
 }
-/* Стили для блока классификации изображений */
+.catalog-link {
+    display: inline-block;
+    margin-right: 20px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.catalog-link:hover {
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 17px;
+}
+/*________________________________________________________________________________________*/
+
 .classification {
     text-align: center; /* Align text in the center */
     margin-right: 20px; /* Add some spacing to the right to separate from other elements */
@@ -103,6 +119,7 @@ header {
 .inputfile {
     display: none; /* Hide the default file input */
 }
+/*________________________________________________________________________________________*/
 
 footer {
     display: flex; /* Используем flexbox */
@@ -119,14 +136,17 @@ footer {
 .footer-block:last-child {
     margin-right: 0; /* Убираем отступ справа у последнего блока */
 }
+/*________________________________________________________________________________________*/
 
 #product-container {
     display: flex;
     flex-wrap: wrap;
 }
-
-/* CSS для отдельного товара */
+#product-container img {
+    width: 60%; /* Желаемая ширина изображения */
+    height: auto; /* Автоматическое подстраивание высоты для сохранения пропорций */
+}
 .product {
-    width: calc(25% - 20px); /* 25% ширины родительского контейнера, минус отступы */
-    margin: 10px; /* Отступы между товарами */
+    width: calc(25% - 20px); 
+    margin: 10px; 
 }
