@@ -5,7 +5,7 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 from tensorflow.keras.models import load_model
 
-
+app = Flask(__name__)
 # ------------------------------Раздел модели------------------------------
 # Загрузка модели
 model = load_model('FashionMNIST_CNN.h5')
@@ -13,8 +13,6 @@ model = load_model('FashionMNIST_CNN.h5')
 model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
-
-app = Flask(__name__)
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 

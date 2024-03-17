@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Store</title>
-    <link rel="stylesheet" href="styles.css">
+    <<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <style>
         /* Стили для горизонтального размещения элементов в заголовке */
         header {
@@ -18,7 +18,7 @@
     <!-- Логотип -->
     <header>
         <div class="logo">
-            <img src="logo.png" alt="Логотип">
+            <<img src="{{ url_for('static', filename='logo.png') }}" alt="Логотип">
         </div>
 
         <div class="catalog">
@@ -32,7 +32,7 @@
             <!-- Здесь может быть ваша форма для загрузки изображений и отображения результата классификации -->
             <form action="/upload" method="post" enctype="multipart/form-data">
                 <input type="file" name="file" accept="image/*">
-                <input type="submit" value="Загрузить">
+                <input type="submit" value="Загрузить" class="button-upload">
             </form>
             {% if message %}
                 <p>{{ message }}</p>
