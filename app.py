@@ -1,3 +1,4 @@
+import json
 from flask import Flask, render_template, request
 import os
 import shutil
@@ -50,7 +51,7 @@ def clear_uploads_folder():
 # Главная страница
 @app.route('/')
 def index():
-    return render_template('index.html') 
+        return render_template('index.html')
 
 # Обработка загрузки файла
 @app.route('/upload', methods=['POST'])

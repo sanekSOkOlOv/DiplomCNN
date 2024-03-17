@@ -1,32 +1,132 @@
-.button-upload{
+input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+}
 
-    color: #000;
-    background-color: aqua;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    
+#file-upload {
+    display: none; /* скрыть стандартную кнопку */
+}
+
+#file-upload-name {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.button-upload {
+    display: flex;
+    align-items: center; /* Выравнивание элементов по вертикали */
+}
+
+.button-upload input[type="file"],
+.button-upload label,
+.button-upload button {
+    margin-right: 10px; /* Пространство между элементами */
+}
+
+.button-upload button {
+    appearance: none; 
+    background-color: transparent;
+    border: 2px solid #1A1A1A;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #3B3B3B;
+    cursor: pointer;
+    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    outline: none;
+    padding: 16px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 150px; 
+    height: 40px; 
+    will-change: transform;
+}
+
+.button-upload button:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+.button-upload button:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+.button-upload label:hover img {
+    cursor: pointer; /* Изменение курсора при наведении */
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #fbfbfb;
 }
 
 .logo {
     float: left;
     margin-top: 10px;
     margin-left: 10px;
-    /* Дополнительные стили по желанию */
+    
+}
+.logo img {
+    max-height: 100px; /* Здесь указывается максимальная высота в пикселях */
 }
 /* Стили для каталога */
 .catalog {
     text-align: center;
-    /* Дополнительные стили по желанию */
+    
 }
 /* Стили для блока классификации изображений */
 .classification {
-    float: right;
-    margin-top: 10px;
-    margin-right: 10px;
-    /* Дополнительные стили по желанию */
+    text-align: center; /* Align text in the center */
+    margin-right: 20px; /* Add some spacing to the right to separate from other elements */
+}
+
+.upload-container {
+    display: flex;
+    flex-direction: column; /* Align items in a column */
+    align-items: center; /* Align items in the center */
+}
+
+.inputfile {
+    display: none; /* Hide the default file input */
+}
+
+footer {
+    display: flex; /* Используем flexbox */
+    justify-content: space-between; /* Распределение блоков по всей ширине */
+    padding: 20px; /* Добавляем отступы для красоты */
+    background-color: #fbfbfb;
+}
+
+.footer-block {
+    flex: 1; /* Равное распределение пространства между блоками */
+    margin-right: 20px; /* Отступ между блоками */
+}
+
+.footer-block:last-child {
+    margin-right: 0; /* Убираем отступ справа у последнего блока */
+}
+
+#product-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* CSS для отдельного товара */
+.product {
+    width: calc(25% - 20px); /* 25% ширины родительского контейнера, минус отступы */
+    margin: 10px; /* Отступы между товарами */
 }
