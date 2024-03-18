@@ -1,16 +1,16 @@
 [
     {
-        "name": "Футболка",
+        "name": "TShort",
         "image": "/static/images/tshort1.jpeg",
         "price": 10.99
     },
     {
-        "name": "Джинсы",
+        "name": "Jeans",
         "image": "/static/images/jeans1.jpeg",
         "price": 29.99
     },
     {
-        "name": "Платье",
+        "name": "Dress",
         "image": "путь_к_изображению_платья",
         "price": 39.99
     }

@@ -1,5 +1,5 @@
 import json
-from flask import Flask, render_template, request
+from flask import Flask, jsonify, render_template, request
 import os
 import shutil
 from tensorflow.keras.preprocessing import image
@@ -73,9 +73,40 @@ def upload_file():
     else:
         return render_template('index.html', message='Invalid file extension')
 
+# ------------------------------Раздел корзины------------------------------
+cart_items = []
+
+def calculate_total_price(cart_items):
+    total_price = 0
+    for item in cart_items:
+        total_price += item['price']
+    return total_price
+
+
 @app.route('/cart')
 def cart():
-    return render_template('cart.html')
+    total_price = calculate_total_price(cart_items)
+    return render_template('cart.html', cart=cart_items, priceall=total_price)
+
+@app.route('/add_to_basket', methods=['POST'])
+def add_to_basket():
+    product = request.json
+    cart_items.append(product)
+    return 'Товар успешно добавлен в корзину'
+
+@app.route('/remove_from_cart', methods=['POST'])
+def remove_from_cart():
+    data = request.json  # Получение данных из POST-запроса
+    item_name = data.get('name')  # Получение имени товара из запроса
+
+    # Найдите товар в корзине и удалите его
+    for item in cart_items:
+        if item['name'] == item_name:
+            cart_items.remove(item)
+            total_price = calculate_total_price(cart_items)  # Пересчитайте общую стоимость
+            return jsonify({'message': 'Товар успешно удален из корзины', 'priceall': total_price})
+
+    return jsonify({'message': 'Товар не найден в корзине'})
 # ------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     app.run(debug=True)

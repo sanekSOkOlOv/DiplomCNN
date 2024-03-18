@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
     <title>Shopping Cart</title>
 </head>
@@ -14,10 +15,82 @@
                 <img src="{{ url_for('static', filename='logo.png') }}" alt="Логотип">
             </a>
         </div>
+        <div class="catalog">
+            <a href="#" class="catalog-link">Верхняя одежда (выше колена)</a>
+            <a href="#" class="catalog-link">Нижняя одежда (ниже колена)</a>
+            <a href="/cart" class="catalog-link">Корзина</a>
+        </div>
     </header>
-    <h2>Корзина товаров</h2>
-    <div id="cart-items">
-        <!-- Здесь будет отображаться содержимое корзины -->
+
+    <div id="notification" class="notification"></div>
+
+    <div class="container">
+        <div class="cart-items">
+            <h2>Корзина товаров</h2>
+            <div id="cart-items">
+                <!-- Здесь будет отображаться содержимое корзины -->
+                {% for item in cart %}
+                    <div class="cart-item">
+                        <div class="item-image">
+                            <img src="{{ item.image }}" alt="{{ item.name }}">
+                            <div class="cancel-overlay">
+                                <img src="{{ url_for('static', filename='cancel.png') }}" alt="Cancel">
+                            </div>
+                        </div>
+                        <h3>{{ item.name }}</h3>
+                        <p>Цена: ${{ item.price }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Форма для заполнения данных о пользователе -->
+        <div class="user-data-form">
+            <h2>Введите данные</h2>
+            <form action="/checkout" method="post">
+                <label for="postal_code">Почтовое отделение:</label>
+                <input type="text" id="postal_code" name="postal_code" required>
+                <label for="user_name">Имя:</label>
+                <input type="text" id="user_name" name="user_name" required>
+                <label for="user_name">Фамилия:</label>
+                <input type="text" id="surname" name="surname" required>
+                <label for="user_name">Телефон:</label>
+                <input type="text" id="phone" name="phone" required>
+                <label for="payment_method">Способ оплаты:</label>
+                <select id="payment_method" name="payment_method" required>
+                    <option value="cash">Наличными при получении</option>
+                    <option value="card">Банковской картой</option>
+                </select>
+                <button type="submit">Оформить заказ</button>
+            </form>
+        </div>
+
+        <div class="checkout-summary" data-priceall="{{ priceall }}">
+            <h2>Итого к оплате:</h2>
+            <p>${{ priceall }}</p>
+            <!-- Здесь можно добавить дополнительную информацию, например, стоимость доставки -->
+        </div>
     </div>
+
+    <footer>
+        <div class="footer-block">
+            <h3>Про нас</h3>
+            <p>Тут може бути інформація про вашу компанію та її діяльність.</p>
+        </div>
+        <div class="footer-block">
+            <h3>Каталог</h3>
+            <p>Тут може бути короткий опис каталогу вашого магазину.</p>
+        </div>
+        <div class="footer-block">
+            <h3>Соціальні мережі</h3>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Twitter</a></li>
+                <!-- Додайте інші соціальні мережі, які ви використовуєте -->
+            </ul>
+        </div>
+    </footer>
+
 </body>
 </html>
