@@ -173,3 +173,150 @@ footer {
     width: calc(25% - 20px); 
     margin: 10px; 
 }
+/*________________________________________________________________________________________*/
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+}
+.user-data-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px; 
+    margin-right: 450px; 
+    padding: 20px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif; 
+    flex: 0 0 300px; /* Фиксированная ширина блока формы */
+    margin-left: 20px; 
+}
+.user-data-form form {
+    width: 100%;
+}
+.user-data-form label,
+.user-data-form input {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px; /* Отступ между полями */
+}
+select {
+    appearance: none; /* Удаление стандартного стиля элемента в браузере */
+    padding: 10px; /* Поля вокруг текста внутри элемента */
+    font-size: 16px; /* Размер текста */
+    border: 1px solid #ccc; /* Граница */
+    border-radius: 5px; /* Скругление углов */
+    background-color: #f8f8f8; /* Цвет фона */
+    width: 100%; /* Ширина элемента */
+    cursor: pointer; /* Изменение указателя при наведении */
+}
+  
+  /* Стили для опций select */
+select option {
+    padding: 10px; /* Поля вокруг текста внутри опций */
+    font-size: 16px; /* Размер текста */
+}
+  
+  /* Стили для hover и focus */
+select:hover,
+select:focus {
+    border-color: #999; /* Цвет границы при наведении или фокусе */
+}
+  
+  /* Стили для hover опций */
+select option:hover {
+    background-color: #ddd; /* Цвет фона при наведении на опцию */
+}
+
+.user-data-form button {
+    width: 100%;
+    padding: 10px; /* Поля вокруг кнопки */
+    background-color: #007bff; /* Цвет фона кнопки */
+    color: #fff; /* Цвет текста кнопки */
+    border: none; /* Убираем границу кнопки */
+    border-radius: 5px; /* Скругление углов кнопки */
+    cursor: pointer; /* Указатель при наведении */
+    transition: background-color 0.3s ease; /* Плавное изменение цвета фона */
+    margin-top: 10px;
+}
+.user-data-form button:hover {
+    background-color: #0056b3; /* Измененный цвет фона при наведении */
+}
+
+.cart-item img {
+    max-width: 150px; /* Максимальная ширина изображения */
+    height: auto; /* Автоматическая высота для поддержания пропорций */
+    margin-right: 10px; /* Отступ между изображением и текстом */
+    position: relative;
+}
+
+.cart-item {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-item .item-image {
+    position: relative;
+}
+
+.cart-item .item-image img {
+    width: 200px; /* Размер фото товара */
+    height: auto;
+}
+
+.cart-item .cancel-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.5); /* Прозрачный белый фон */
+    text-align: center;
+}
+
+.cart-item:hover .cancel-overlay {
+    display: block;
+}
+.cancel-overlay img {
+    width: 20px; /* Новая ширина изображения cancel.png */
+    height: auto; /* Автоматическая высота для поддержания пропорций */
+}
+/*________________________________________________________________________________________*/
+
+.notification {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 9999;
+}
+/*________________________________________________________________________________________*/
+
+.checkout-summary {
+    background-color: #f2f2f2; /* Цвет фона */
+    padding: 20px; /* Внутренние отступы */
+    border-radius: 5px; /* Закругленные углы */
+    margin-top: 20px; /* Отступ сверху */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень блока */
+    font-family: "Roboto", Arial, sans-serif;
+}
+
+.checkout-summary h2 {
+    margin-top: 0; /* Убираем верхний отступ у заголовка */
+}
+
+.checkout-summary p {
+    margin-bottom: 10px;
+    font-family: "Roboto", Arial, sans-serif;
+}
