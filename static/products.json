@@ -1,17 +1,24 @@
 [
     {
-        "name": "TShort",
+        "name": "T-Short Biba",
         "image": "/static/images/tshort1.jpeg",
-        "price": 10.99
+        "price": 10.99,
+        "class": "T-shirt/top"
     },
     {
         "name": "Jeans",
         "image": "/static/images/jeans1.jpeg",
-        "price": 29.99
+        "price": 29.99,
+        "class": "Trouser"
     },
     {
-        "name": "Dress",
-        "image": "путь_к_изображению_платья",
+        "name": "Pullover",
+        "image": "/static/images/pullover1.jpeg",
         "price": 39.99
+    },
+    {
+        "name": "TShort Super",
+        "image": "/static/images/tshort1.jpeg",
+        "price": 25.99
     }
 ]
