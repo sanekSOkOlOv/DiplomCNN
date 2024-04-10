@@ -42,7 +42,16 @@
         </div>
     </header>
 
-    <div id="product-container" class="row"></div>
+    <!-- <div id="product-container" class="row"></div> -->
+    <div id="product-container">
+        {% for product in products %}
+            <div class="product">
+                <img src="{{ product.image }}" alt="{{ product[0] }}" onclick="addToBasket('{{ product.name }}', '{{ product.image }}', '{{ product.price }}')">
+                <h4>{{ product.name }}</h4>
+                <p>Цена: ${{ product.image }}</p>
+            </div>
+        {% endfor %}
+    </div>
 
     <footer>
         <div class="footer-block">
