@@ -10,8 +10,11 @@ from tensorflow.keras.models import load_model
 app = Flask(__name__)
 
 # ------------------------------Раздел БД----------------------------------
+#(localdb)\MSSQLLocalDB
+
+
 def connect_to_mssql():
-    conn = pyodbc.connect('DRIVER={SQL Server};SERVER=(localdb)\MSSQLLocalDB;DATABASE=ProductDB;Trusted_Connection=yes;')
+    conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=(localdb)\MSSQLLocalDB;DATABASE=ProductsDB;Trusted_Connection=yes;')
     return conn
 
 connection = connect_to_mssql()
@@ -67,7 +70,13 @@ def clear_uploads_folder():
 # Главная страница
 @app.route('/')
 def index():
-        return render_template('index.html')
+    cursor = connection.cursor()
+    cursor.execute('SELECT name, image, price FROM Products')
+    products = cursor.fetchall()
+    cursor.close()
+    
+    # Передача данных в шаблон
+    return render_template('index.html', products=products)
 
 # Обработка загрузки файла
 @app.route('/upload', methods=['POST'])
