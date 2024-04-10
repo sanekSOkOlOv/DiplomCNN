@@ -1,4 +1,5 @@
 import json
+import pyodbc
 from flask import Flask, jsonify, render_template, request
 import os
 import shutil
@@ -7,6 +8,21 @@ import numpy as np
 from tensorflow.keras.models import load_model
 
 app = Flask(__name__)
+
+# ------------------------------Раздел БД----------------------------------
+def connect_to_mssql():
+    conn = pyodbc.connect('DRIVER={SQL Server};SERVER=(localdb)\MSSQLLocalDB;DATABASE=ProductDB;Trusted_Connection=yes;')
+    return conn
+
+connection = connect_to_mssql()
+
+# Проверка успешности подключения
+if connection:
+    print("Подключение к базе данных MSSQL успешно установлено.")
+    # Дальнейшие действия с подключением, если необходимо
+else:
+    print("Не удалось установить подключение к базе данных MSSQL.")
+
 # ------------------------------Раздел модели------------------------------
 # Загрузка модели
 model = load_model('FashionMNIST_CNN.h5')
