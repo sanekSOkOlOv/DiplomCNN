@@ -1,21 +1,21 @@
-document.addEventListener("DOMContentLoaded", function() {
-    fetch('/static/products.json')
-        .then(response => response.json())
-        .then(data => {
-            const productContainer = document.getElementById('product-container');
-            data.forEach(product => {
-                const productDiv = document.createElement('div');
-                productDiv.classList.add('product');
-                productDiv.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}" onclick="addToBasket('${product.name}', '${product.image}', ${product.price})">
-                    <h4>${product.name}</h4>
-                    <p>Цена: $${product.price.toFixed(2)}</p>
-                `;
-                productContainer.appendChild(productDiv);
-            });
-        })
-        .catch(error => console.error('Ошибка загрузки данных о товарах:', error));
-});
+// document.addEventListener("DOMContentLoaded", function() {
+//     fetch('/static/products.json')
+//         .then(response => response.json())
+//         .then(data => {
+//             const productContainer = document.getElementById('product-container');
+//             data.forEach(product => {
+//                 const productDiv = document.createElement('div');
+//                 productDiv.classList.add('product');
+//                 productDiv.innerHTML = `
+//                     <img src="${product.image}" alt="${product.name}" onclick="addToBasket('${product.name}', '${product.image}', ${product.price})">
+//                     <h4>${product.name}</h4>
+//                     <p>Цена: $${product.price.toFixed(2)}</p>
+//                 `;
+//                 productContainer.appendChild(productDiv);
+//             });
+//         })
+//         .catch(error => console.error('Ошибка загрузки данных о товарах:', error));
+// });
 
 function addToBasket(name, image, price) {
     const product = { name: name, image: image, price: price };

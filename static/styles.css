@@ -173,6 +173,14 @@ footer {
     width: calc(25% - 20px); 
     margin: 10px; 
 }
+.product img {
+    transition: transform 0.3s ease-in-out; /* Добавляем плавную анимацию */
+    cursor: pointer;
+}
+
+.product img:hover {
+    transform: scale(1.1); /* Увеличиваем изображение при наведении */
+}
 /*________________________________________________________________________________________*/
 .container {
     display: flex;
