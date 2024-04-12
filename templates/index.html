@@ -48,7 +48,7 @@
             <div class="product">
                 <img src="{{ product.image }}" alt="{{ product[0] }}" onclick="addToBasket('{{ product.name }}', '{{ product.image }}', '{{ product.price }}')">
                 <h4>{{ product.name }}</h4>
-                <p>Цена: ${{ product.image }}</p>
+                <p>Цена: ${{ product.price }}</p>
             </div>
         {% endfor %}
     </div>

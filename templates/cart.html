@@ -34,7 +34,7 @@
                         <div class="item-image">
                             <img src="{{ item.image }}" alt="{{ item.name }}">
                             <div class="cancel-overlay">
-                                <img src="{{ url_for('static', filename='cancel.png') }}" alt="Cancel">
+                                <img src="{{ url_for('static', filename='close.png') }}" alt="Cancel">
                             </div>
                         </div>
                         <h3>{{ item.name }}</h3>
@@ -50,11 +50,14 @@
             <form action="/checkout" method="post">
                 <label for="postal_code">Почтовое отделение:</label>
                 <input type="text" id="postal_code" name="postal_code" required>
+                <!-- Добавлено новое поле для поиска отделения "Новой Почты" -->
+                <label for="post_office_search">Поиск почтового отделения:</label>
+                <input type="text" id="post_office_search" name="post_office_search" placeholder="Введите ваш населенный пункт">
                 <label for="user_name">Имя:</label>
                 <input type="text" id="user_name" name="user_name" required>
-                <label for="user_name">Фамилия:</label>
+                <label for="surname">Фамилия:</label>
                 <input type="text" id="surname" name="surname" required>
-                <label for="user_name">Телефон:</label>
+                <label for="phone">Телефон:</label>
                 <input type="text" id="phone" name="phone" required>
                 <label for="payment_method">Способ оплаты:</label>
                 <select id="payment_method" name="payment_method" required>
@@ -64,6 +67,7 @@
                 <button type="submit">Оформить заказ</button>
             </form>
         </div>
+        
 
         <div class="checkout-summary" data-priceall="{{ priceall }}">
             <h2>Итого к оплате:</h2>
