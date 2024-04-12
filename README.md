@@ -4,17 +4,17 @@ This project implements a Convolutional Neural Network (CNN) for classifying fas
 
 ## Description
 
-The Fashion MNIST dataset consists of 60,000 training images and 10,000 testing images, each of size 28x28 pixels. Each image belongs to one of 10 classes: T-shirt/top, Trouser, Pullover, Dress, Coat, Sandal, Shirt, Sneaker, Bag, Ankle boot.
+The [Fashion MNIST](https://github.com/zalandoresearch/fashion-mnist) dataset consists of 60,000 training images and 10,000 testing images, each of size 28x28 pixels. Each image belongs to one of 10 classes: T-shirt/top, Trouser, Pullover, Dress, Coat, Sandal, Shirt, Sneaker, Bag, Ankle boot.
 
 The CNN model implemented in this project achieves an accuracy of 90% on the test set.
 
 ## Requirements
 
 - [Python 3](https://www.python.org/)
-- TensorFlow 2.x
-- NumPy
-- Matplotlib
-- Pyodbc
+- [TensorFlow 2.x](https://www.tensorflow.org/?hl=ru)
+- [NumPy](https://numpy.org/)
+- Matplotlib(https://matplotlib.org/)
+- Pyodbc(https://github.com/mkleehammer/pyodbc)
 
 ## Usage
 
