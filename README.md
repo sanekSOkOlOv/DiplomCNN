@@ -10,10 +10,11 @@ The CNN model implemented in this project achieves an accuracy of 90% on the tes
 
 ## Requirements
 
-- Python 3
+- [Python 3](https://www.python.org/)
 - TensorFlow 2.x
 - NumPy
 - Matplotlib
+- Pyodbc
 
 ## Usage
 
