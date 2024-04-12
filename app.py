@@ -6,6 +6,7 @@ import shutil
 from tensorflow.keras.preprocessing import image
 import numpy as np
 from tensorflow.keras.models import load_model
+import requests
 
 app = Flask(__name__)
 
@@ -26,7 +27,15 @@ if connection:
 else:
     print("Не удалось установить подключение к базе данных MSSQL.")
 
-# ------------------------------Раздел модели------------------------------
+# ------------------------------Раздел API nova post----------------------------------
+
+API_KEY = '9223d5054eb6dd03031032e0c7570646'
+
+url = 'https://api.novaposhta.ua/v2.0/json'
+api_key = '9223d5054eb6dd03031032e0c7570646'
+
+
+# ------------------------------Раздел модели------------------------------------------
 # Загрузка модели
 model = load_model('FashionMNIST_CNN.h5')
 
@@ -104,8 +113,16 @@ cart_items = []
 def calculate_total_price(cart_items):
     total_price = 0
     for item in cart_items:
-        total_price += item['price']
-    return total_price
+        # Проверяем, что значение цены является числом
+        if isinstance(item['price'], (int, float)):
+            total_price += item['price']
+        else:
+            # Если значение цены не является числом, пытаемся преобразовать его в float
+            try:
+                total_price += float(item['price'])
+            except ValueError:
+                print(f"Ошибка: Невозможно преобразовать значение цены '{item['price']}' в число.")
+    return round(total_price, 2)
 
 
 @app.route('/cart')
