@@ -27,6 +27,9 @@ cd DiplomCNN
 ## Flask Application
 This project can be integrated into a Flask web application to serve as part of a clothing store website. Users can upload their own images, and the model will classify them to navigate to the appropriate section of the website (e.g., T-shirts, Dresses, Shoes).
 
+##Database
+The project uses MSSQL as the backend database to store product data. You can find utility functions for interacting with the database in database_utils.py.
+
 ## Files
 
 - FashionMNIST_CNN.py: Jupyter Notebook containing the code for training, evaluation, and prediction.
