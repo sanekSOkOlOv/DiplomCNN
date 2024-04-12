@@ -35,3 +35,4 @@ This project can be integrated into a Flask web application to serve as part of 
 - templates: The templates folder is for HTML templates only.
 - static: Static files (such as CSS, JavaScript, images) are usually stored in the static folder
    -  products.json: For this “layout” I store product data in JSON format; in a real application, only a database is suitable.
+- database_utils.py: Contains utility functions for interacting with the database, including connecting to the database, inserting, updating, and deleting records, as well as retrieving data.
