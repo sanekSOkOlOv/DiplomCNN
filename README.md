@@ -15,6 +15,7 @@ The CNN model implemented in this project achieves an accuracy of 90% on the tes
 - [NumPy](https://numpy.org/)
 - [Matplotlib](https://matplotlib.org/)
 - [Pyodbc](https://github.com/mkleehammer/pyodbc)
+- [novaposhta-python-client](https://github.com/semolex/novaposhta-python-client)
 
 ## Usage
 
