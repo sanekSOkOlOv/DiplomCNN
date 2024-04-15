@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
     <title>Shopping Cart</title>
 </head>
@@ -47,12 +48,13 @@
         <!-- Форма для заполнения данных о пользователе -->
         <div class="user-data-form">
             <h2>Введите данные</h2>
-            <form action="/checkout" method="post">
-                <label for="postal_code">Почтовое отделение:</label>
-                <input type="text" id="postal_code" name="postal_code" required>
-                <!-- Добавлено новое поле для поиска отделения "Новой Почты" -->
-                <label for="post_office_search">Поиск почтового отделения:</label>
-                <input type="text" id="post_office_search" name="post_office_search" placeholder="Введите ваш населенный пункт">
+            <form action="/checkout" method="post" id="search-form">
+                <input list="descriptions" name="description">
+                <datalist id="descriptions">
+                <!-- Здесь будут элементы <option> -->
+                </datalist>
+                <label for="city">Поиск почтового отделения:</label>
+                <input type="text" id="city" name="city" placeholder="Введите ваш населенный пункт">
                 <label for="user_name">Имя:</label>
                 <input type="text" id="user_name" name="user_name" required>
                 <label for="surname">Фамилия:</label>

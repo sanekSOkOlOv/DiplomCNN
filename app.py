@@ -1,3 +1,4 @@
+from config import connectionString, ALLOWED_EXTENSIONS, API_KEY
 import json
 import pyodbc
 from flask import Flask, jsonify, render_template, request
@@ -8,14 +9,15 @@ import numpy as np
 from tensorflow.keras.models import load_model
 import requests
 
+from novaposhta.client import NovaPoshtaApi
+
 app = Flask(__name__)
 
 # ------------------------------Раздел БД----------------------------------
 #(localdb)\MSSQLLocalDB
 
-
 def connect_to_mssql():
-    conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=(localdb)\MSSQLLocalDB;DATABASE=ProductsDB;Trusted_Connection=yes;')
+    conn = pyodbc.connect(connectionString)
     return conn
 
 connection = connect_to_mssql()
@@ -28,7 +30,15 @@ else:
     print("Не удалось установить подключение к базе данных MSSQL.")
 
 # ------------------------------Раздел API nova post----------------------------------
+client = NovaPoshtaApi(API_KEY, timeout=30)
 
+def search_settlements(city_name):
+    settlements = client.address.search_settlements(city_name=city_name, limit=5)
+    return settlements['data'][0]['Addresses']
+
+def search_warehouses(city_name):
+    warehouses = client.address.get_warehouses(city_name=city_name, limit=50)
+    return warehouses
 
 # ------------------------------Раздел модели------------------------------------------
 # Загрузка модели
@@ -38,7 +48,6 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 # Проверка разрешенных расширений файла
 def allowed_file(filename):
@@ -78,6 +87,7 @@ def index():
     cursor.execute('SELECT name, image, price FROM Products')
     products = cursor.fetchall()
     cursor.close()
+
     
     # Передача данных в шаблон
     return render_template('index.html', products=products)
@@ -120,8 +130,13 @@ def calculate_total_price(cart_items):
     return round(total_price, 2)
 
 
-@app.route('/cart')
+@app.route('/cart', methods=['GET', 'POST'])
 def cart():
+    if request.method == 'POST':
+        city_name = request.form['city']
+        settlements = search_settlements(city_name)
+        warehouses = search_warehouses(city_name)
+        return render_template('descriptions.html',  warehouses = warehouses)
     total_price = calculate_total_price(cart_items)
     return render_template('cart.html', cart=cart_items, priceall=total_price)
 
