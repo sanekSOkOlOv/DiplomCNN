@@ -1,5 +1,6 @@
 /.metals
 /.images
+/.__pycache__
 static/images/jeans1.jpeg
 static/images/tshort1.jpeg
 uploads/real.jpg
