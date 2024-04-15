@@ -108,7 +108,8 @@ header {
 
 .catalog {
     text-align: center;
-    
+    font-family: "Jersey 10", sans-serif;
+    font-size: large;
 }
 .catalog-link {
     display: inline-block;
@@ -169,6 +170,10 @@ footer {
     width: 60%; /* Желаемая ширина изображения */
     height: auto; /* Автоматическое подстраивание высоты для сохранения пропорций */
 }
+
+#product-container p {
+    font-weight: bold
+}
 .product {
     width: calc(25% - 20px); 
     margin: 10px; 
@@ -195,7 +200,7 @@ footer {
     flex-direction: column;
     align-items: center;
     max-width: 300px; 
-    margin-right: 450px; 
+    margin-right: 650px; 
     padding: 20px; 
     border: 1px solid #ccc; 
     border-radius: 5px; 

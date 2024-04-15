@@ -16,7 +16,7 @@ connection = connect_to_mssql()
 def print_all_products(conn):
     cursor = conn.cursor()
 
-    # SQL-запрос для выборки всех данных из таблицы Products
+    #  SQL-запрос для выборки всех данных из таблицы Products
     sql = "SELECT * FROM Products;"
 
     try:
@@ -41,6 +41,8 @@ def insert_products(conn):
     sql = """
     INSERT INTO Products (name, image, price, class)
     VALUES
+        ('T-Short Cards', '/static/images/tshortCards.jpeg', 20.99, 'T-shirt/top');
+        
        
     """
 
@@ -72,8 +74,8 @@ def delete_product_by_id(product_id):
 
 if connection:
     print("Подключение к базе данных MSSQL успешно установлено.")
-    # insert_products(connection)
-    # delete_product_by_id(1002)
+    insert_products(connection)
+    # delete_product_by_id(2003)
     print_all_products(connection)
     connection.close()
 else:
