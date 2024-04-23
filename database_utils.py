@@ -33,6 +33,8 @@ def print_all_products(conn):
     finally:
         cursor.close()
 
+# classes = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
+#                'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
 def insert_products(conn):
     cursor = conn.cursor()
@@ -41,7 +43,10 @@ def insert_products(conn):
     sql = """
     INSERT INTO Products (name, image, price, class)
     VALUES
-        ('T-Short Cards', '/static/images/tshortCards.jpeg', 20.99, 'T-shirt/top');
+        ('Big Baby Bag', 'static\images\Backpage1.jpeg', 25.99, 'Bag'),
+        ('T-Short Logo', 'static\images\Tshortlogo.jpeg', 20.99, 'T-shirt/top'),
+        ('T-Short Tend', 'static\images\Tshortend.jpeg', 20.99, 'T-shirt/top'),
+        ('T-Short Blue', 'static\images\Tshortblue.jpeg', 20.99, 'T-shirt/top');
         
        
     """
@@ -70,12 +75,17 @@ def delete_product_by_id(product_id):
     
     except pyodbc.Error as e:
         print("Ошибка при выполнении SQL-запроса:", e)
+    finally:
+        cursor.close()
 
 
 if connection:
     print("Подключение к базе данных MSSQL успешно установлено.")
     insert_products(connection)
-    # delete_product_by_id(2003)
+    delete_product_by_id(4009)
+    delete_product_by_id(4010)
+    delete_product_by_id(4011)
+    delete_product_by_id(4002)
     print_all_products(connection)
     connection.close()
 else:
