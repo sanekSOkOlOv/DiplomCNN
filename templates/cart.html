@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='cart.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
     <title>Shopping Cart</title>
@@ -39,36 +42,36 @@
                             </div>
                         </div>
                         <h3>{{ item.name }}</h3>
-                        <p>Цена: ${{ item.price }}</p>
+                        <p class="p-price">${{ item.price }}</p>
                     </div>
                 {% endfor %}
             </div>
         </div>
         
         <!-- Форма для заполнения данных о пользователе -->
-        <div class="user-data-form">
-            <h2>Введите данные</h2>
-            <form action="/checkout" method="post" id="search-form">
-                <input list="descriptions" name="description">
-                <datalist id="descriptions">
-                <!-- Здесь будут элементы <option> -->
-                </datalist>
-                <label for="city">Поиск почтового отделения:</label>
-                <input type="text" id="city" name="city" placeholder="Введите ваш населенный пункт">
-                <label for="user_name">Имя:</label>
-                <input type="text" id="user_name" name="user_name" required>
-                <label for="surname">Фамилия:</label>
-                <input type="text" id="surname" name="surname" required>
-                <label for="phone">Телефон:</label>
-                <input type="text" id="phone" name="phone" required>
-                <label for="payment_method">Способ оплаты:</label>
-                <select id="payment_method" name="payment_method" required>
-                    <option value="cash">Наличными при получении</option>
-                    <option value="card">Банковской картой</option>
-                </select>
-                <button type="submit">Оформить заказ</button>
-            </form>
-        </div>
+            <div class="user-data-form">
+                <h2>Введите данные</h2>
+                <form action="/checkout" method="post" id="search-form">
+                    <input list="descriptions" name="description">
+                    <datalist id="descriptions">
+                    <!-- Здесь будут элементы <option> -->
+                    </datalist>
+                    <label for="city">Поиск почтового отделения:</label>
+                    <input type="text" id="city" name="city" placeholder="Введите ваш населенный пункт">
+                    <label for="user_name">Имя:</label>
+                    <input type="text" id="user_name" name="user_name" required>
+                    <label for="surname">Фамилия:</label>
+                    <input type="text" id="surname" name="surname" required>
+                    <label for="phone">Телефон:</label>
+                    <input type="text" id="phone" name="phone" required>
+                    <label for="payment_method">Способ оплаты:</label>
+                    <select id="payment_method" name="payment_method" required>
+                        <option value="cash">Наличными при получении</option>
+                        <option value="card">Банковской картой</option>
+                    </select>
+                    <button type="submit">Оформить заказ</button>
+                </form>
+            </div>
         
 
         <div class="checkout-summary" data-priceall="{{ priceall }}">
