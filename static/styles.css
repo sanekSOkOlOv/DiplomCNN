@@ -91,6 +91,11 @@ header {
     align-items: center;
     background-color: #fbfbfb;
 }
+.train-one-regular {
+    font-family: "Train One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
 /*________________________________________________________________________________________*/
 
 .logo {
@@ -108,20 +113,19 @@ header {
 
 .catalog {
     text-align: center;
-    font-family: "Jersey 10", sans-serif;
-    font-size: large;
+    font-family: "Train One", system-ui;
+    font-size:large;
 }
 .catalog-link {
     display: inline-block;
     margin-right: 20px;
     text-decoration: none;
     color: black;
-    font-weight: bold;
+    font-weight: normal;
     transition: color 0.3s ease-in-out; /* Плавный переход цвета */
 }
 .catalog-link:hover {
-    text-decoration: underline;
-    font-weight: bold;
+    font-weight:bold;
     background-image: repeating-conic-gradient(#553c9a 0%, #553c9a 10%, #ee4b2b 10%, #ee4b2b 20%, #00c2cb 20%, #00c2cb 30%);
     -webkit-background-clip: text; /* Для поддержки веб-кит браузеров */
     background-clip: text;
@@ -163,6 +167,7 @@ footer {
 /*________________________________________________________________________________________*/
 
 #product-container {
+    font-family: "Train One", system-ui;
     display: flex;
     flex-wrap: wrap;
 }
@@ -172,7 +177,10 @@ footer {
 }
 
 #product-container p {
-    font-weight: bold
+    
+    font-weight:normal;
+    font-size:larger;
+    
 }
 .product {
     width: calc(25% - 20px); 
@@ -185,6 +193,15 @@ footer {
 
 .product img:hover {
     transform: scale(1.1); /* Увеличиваем изображение при наведении */
+}
+
+.product:hover h4,
+.product:hover p {
+    background: repeating-conic-gradient(#c33cbc 10%, #671858 20%, #00c2cb 20%, #00c2cb 30%);
+    -webkit-background-clip: text;
+    background-clip: text; /* Добавлено для совместимости */
+    text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
 }
 /*________________________________________________________________________________________*/
 .container {
@@ -199,8 +216,8 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 300px; 
-    margin-right: 650px; 
+    margin-left: auto; /* Смещение вправо для центрирования */
+    margin-right: auto; /* Смещение влево для центрирования */
     padding: 20px; 
     border: 1px solid #ccc; 
     border-radius: 5px; 
@@ -241,24 +258,24 @@ select:focus {
     border-color: #999; /* Цвет границы при наведении или фокусе */
 }
   
-  /* Стили для hover опций */
+
 select option:hover {
     background-color: #ddd; /* Цвет фона при наведении на опцию */
 }
 
 .user-data-form button {
     width: 100%;
-    padding: 10px; /* Поля вокруг кнопки */
-    background-color: #007bff; /* Цвет фона кнопки */
-    color: #fff; /* Цвет текста кнопки */
-    border: none; /* Убираем границу кнопки */
-    border-radius: 5px; /* Скругление углов кнопки */
-    cursor: pointer; /* Указатель при наведении */
+    padding: 10px; 
+    background-color: #007bff; 
+    color: #fff; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
     transition: background-color 0.3s ease; /* Плавное изменение цвета фона */
     margin-top: 10px;
 }
 .user-data-form button:hover {
-    background-color: #0056b3; /* Измененный цвет фона при наведении */
+    background-color: #0056b3; 
 }
 
 .cart-item img {
