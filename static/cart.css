@@ -1,0 +1,122 @@
+.user-data-form form {
+    width: 100%;
+}
+.user-data-form label,
+.user-data-form input {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px; /* Отступ между полями */
+}
+select {
+    appearance: none; /* Удаление стандартного стиля элемента в браузере */
+    padding: 10px; /* Поля вокруг текста внутри элемента */
+    font-size: 16px; /* Размер текста */
+    border: 1px solid #ccc; /* Граница */
+    border-radius: 5px; /* Скругление углов */
+    background-color: #f8f8f8; /* Цвет фона */
+    width: 100%; /* Ширина элемента */
+    cursor: pointer; /* Изменение указателя при наведении */
+}
+  
+  /* Стили для опций select */
+select option {
+    padding: 10px; /* Поля вокруг текста внутри опций */
+    font-size: 16px; /* Размер текста */
+}
+  
+  /* Стили для hover и focus */
+select:hover,
+select:focus {
+    border-color: #999; /* Цвет границы при наведении или фокусе */
+}
+  
+
+select option:hover {
+    background-color: #ddd; /* Цвет фона при наведении на опцию */
+}
+
+.user-data-form button {
+    width: 100%;
+    padding: 10px; 
+    background-color: #007bff; 
+    color: #fff; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; /* Плавное изменение цвета фона */
+    margin-top: 10px;
+}
+.user-data-form button:hover {
+    background-color: #0056b3; 
+}
+
+/*________________________________________________________________________________________*/
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    font-family: "Abril Fatface", serif;
+    font-size: small;
+}
+.p-price{
+    font-weight: bold;
+}
+.user-data-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto; /* Смещение вправо для центрирования */
+    margin-right: 500px; 
+    padding: 20px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif; 
+    flex: 0 0 300px; /* Фиксированная ширина блока формы */
+    height: 650px;
+}
+
+.cart-item img {
+    max-width: 150px; /* Максимальная ширина изображения */
+    height: auto; /* Автоматическая высота для поддержания пропорций */
+    margin-right: 10px; /* Отступ между изображением и текстом */
+    position: relative;
+}
+
+.cart-item {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-item .item-image {
+    position: relative;
+}
+
+.cart-item .item-image img {
+    width: 200px; /* Размер фото товара */
+    height: auto;
+}
+
+.cart-item .cancel-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.5); /* Прозрачный белый фон */
+    text-align: center;
+}
+
+.cart-item:hover .cancel-overlay {
+    display: block;
+}
+.cancel-overlay img {
+    width: 20px; /* Новая ширина изображения cancel.png */
+    height: auto; /* Автоматическая высота для поддержания пропорций */
+}
+/*________________________________________________________________________________________*/
