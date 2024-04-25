@@ -43,10 +43,16 @@ def insert_products(conn):
     sql = """
     INSERT INTO Products (name, image, price, class)
     VALUES
-        ('Big Baby Bag', 'static\images\Backpage1.jpeg', 25.99, 'Bag'),
-        ('T-Short Logo', 'static\images\Tshortlogo.jpeg', 20.99, 'T-shirt/top'),
-        ('T-Short Tend', 'static\images\Tshortend.jpeg', 20.99, 'T-shirt/top'),
-        ('T-Short Blue', 'static\images\Tshortblue.jpeg', 20.99, 'T-shirt/top');
+        ('Big Baby Bag', 'static/images/Backpage1.jpeg', 25.99, 'Bag'),
+        ('Pullover Dragon King', 'static/images/switer1.jpeg', 40.00, 'Pullover'),
+        ('Kargo Mini', 'static/images/pullover2.jpeg', 24.99, 'Pullover'),
+        ('Kargo Mini', 'static/images/Trouser4.jpeg', 22.99, 'Trouser'),
+        ('Kagro Top', 'static/images/Trouser3.jpeg', 24.99, 'Trouser'),
+        ('Classic Sport', 'static/images/Trouser2.jpeg', 19.00, 'Trouser'),
+        ('Kargo ZED', 'static/images/Trouser1.jpeg', 24.99, 'Trouser'),
+        ('T-Short Logo', 'static/images/Tshortlogo.jpeg', 20.99, 'T-shirt/top'),
+        ('T-Short Tend', 'static/images/Tshortend.jpeg', 20.99, 'T-shirt/top'),
+        ('T-Short Blue', 'static/images/Tshortblue.jpeg', 20.99, 'T-shirt/top');
         
        
     """
@@ -81,11 +87,8 @@ def delete_product_by_id(product_id):
 
 if connection:
     print("Подключение к базе данных MSSQL успешно установлено.")
-    insert_products(connection)
-    delete_product_by_id(4009)
-    delete_product_by_id(4010)
-    delete_product_by_id(4011)
-    delete_product_by_id(4002)
+    # insert_products(connection)
+    # delete_product_by_id(4003)
     print_all_products(connection)
     connection.close()
 else:
