@@ -84,21 +84,6 @@ function applyClothingClassFilter() {
         }
     });
 }
-function ClothingClassFilter(predictedClass) {
-    // Получить все товары на странице
-    var products = document.querySelectorAll('.product');
-    console.log('Applying clothing class filter with predicted class:', predictedClass);
-    // Пройтись по каждому товару и скрыть те, которые не соответствуют предсказанному классу
-    products.forEach(product => {
-        var productClass = product.querySelector('.product-class').innerText;
-
-        if (productClass !== predictedClass) {
-            product.style.display = 'none';
-        } else {
-            product.style.display = 'block';
-        }
-    });
-}
 
 function uploadImage() {
     var input = document.getElementById('file');
@@ -115,9 +100,7 @@ function uploadImage() {
     .then(data => {
         // Получить классификацию изображения из данных
         var predictedClass = data.predicted_class;
-
-        // Применить фильтр по классу одежды с использованием предсказанного класса
-        ClothingClassFilter(predictedClass);
+        window.location.href = '/classified_products';
     })
     .catch(error => console.error('Ошибка при загрузке изображения:', error));
 }

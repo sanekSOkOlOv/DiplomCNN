@@ -41,6 +41,7 @@ def search_warehouses(city_name):
     return warehouses
 
 # ------------------------------Раздел модели------------------------------------------
+predictedClassname = None
 # Загрузка модели
 model = load_model('FashionMNIST_CNN.h5')
 
@@ -94,6 +95,7 @@ def index():
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
+    global predictedClassname
     clear_uploads_folder()
 
     if 'file' not in request.files:
@@ -107,11 +109,24 @@ def upload_file():
         file.save(file_path)
         # Классифицируем изображение
         class_name = classify_image(file_path)
+        predictedClassname = class_name
         print(class_name)
         # Возвращаем предсказанный класс в виде JSON
         return jsonify({'predicted_class': class_name})
     else:
         return jsonify({'error': 'Invalid file extension'})
+
+@app.route('/classified_products')
+def show_classified_products():
+
+    cursor = connection.cursor()
+    # Выберите только те продукты, у которых class соответствует предсказанному классу
+    cursor.execute('SELECT name, image, class, price FROM Products WHERE class = ?', (predictedClassname,))
+    filtered_products = cursor.fetchall()
+    cursor.close()
+    print("TRY>>>")
+    print(predictedClassname)
+    return render_template('classified_products.html', products=filtered_products)
 
 # ------------------------------Раздел корзины------------------------------
 cart_items = []
