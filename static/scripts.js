@@ -40,16 +40,85 @@ function addToBasket(name, image, price) {
     });
 }
 
-$(document).ready(function() {
-    $('#city').on('input', function() {
-        var formData = $('#search-form').serialize();
-        $.ajax({
-            type: 'POST',
-            url: '/cart',
-            data: formData,
-            success: function(response) {
-                $('#descriptions').html(response);
-            }
-        });
+
+function updateMaxPrice(value) {
+    document.getElementById('max-price-value').textContent = value;
+}
+
+function applyPriceFilter() {
+    var maxPrice = parseFloat(document.getElementById('max-price').value);
+
+    // Обойти все продукты
+    var products = document.querySelectorAll('.product');
+    products.forEach(function(product) {
+        var priceElement = product.querySelector('.product-item p');
+        var price = parseFloat(priceElement.textContent.replace('$', ''));
+
+        // Проверить, попадает ли цена продукта в заданный максимальный диапазон
+        if (price <= maxPrice) {
+            // Если цена не превышает максимальную, показать продукт
+            product.style.display = 'block';
+        } else {
+            // Если цена превышает максимальную, скрыть продукт
+            product.style.display = 'none';
+        }
     });
-});
+}
+
+function applyClothingClassFilter() {
+    var selectedClass = document.getElementById('clothing-class').value;
+
+    // Обойти все продукты
+    var products = document.querySelectorAll('.product');
+    products.forEach(function(product) {
+        var classElement = product.querySelector('.product-class');
+        var productClass = classElement.textContent.trim();
+        console.log('Applying clothing class filter with predicted class:', selectedClass);
+        // Проверить, соответствует ли класс продукта выбранному классу
+        if (selectedClass === '' || productClass === selectedClass) {
+            // Если продукт соответствует выбранному классу или выбран "Все", показать продукт
+            product.style.display = 'block';
+        } else {
+            // Если продукт не соответствует выбранному классу, скрыть продукт
+            product.style.display = 'none';
+        }
+    });
+}
+function ClothingClassFilter(predictedClass) {
+    // Получить все товары на странице
+    var products = document.querySelectorAll('.product');
+    console.log('Applying clothing class filter with predicted class:', predictedClass);
+    // Пройтись по каждому товару и скрыть те, которые не соответствуют предсказанному классу
+    products.forEach(product => {
+        var productClass = product.querySelector('.product-class').innerText;
+
+        if (productClass !== predictedClass) {
+            product.style.display = 'none';
+        } else {
+            product.style.display = 'block';
+        }
+    });
+}
+
+function uploadImage() {
+    var input = document.getElementById('file');
+    var file = input.files[0];
+
+    var formData = new FormData();
+    formData.append('file', file);
+
+    fetch('/upload', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Получить классификацию изображения из данных
+        var predictedClass = data.predicted_class;
+
+        // Применить фильтр по классу одежды с использованием предсказанного класса
+        ClothingClassFilter(predictedClass);
+    })
+    .catch(error => console.error('Ошибка при загрузке изображения:', error));
+}
+

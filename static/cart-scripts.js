@@ -47,3 +47,17 @@ function updateTotalPrice(price) {
         totalPriceElement.textContent = `$${price}`;
     }
 }
+
+$(document).ready(function() {
+    $('#city').on('input', function() {
+        var formData = $('#search-form').serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/cart',
+            data: formData,
+            success: function(response) {
+                $('#descriptions').html(response);
+            }
+        });
+    });
+});

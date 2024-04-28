@@ -84,7 +84,7 @@ def clear_uploads_folder():
 @app.route('/')
 def index():
     cursor = connection.cursor()
-    cursor.execute('SELECT name, image, price FROM Products')
+    cursor.execute('SELECT name, image, class, price FROM Products')
     products = cursor.fetchall()
     cursor.close()
 
@@ -92,25 +92,26 @@ def index():
     # Передача данных в шаблон
     return render_template('index.html', products=products)
 
-# Обработка загрузки файла
 @app.route('/upload', methods=['POST'])
 def upload_file():
     clear_uploads_folder()
 
     if 'file' not in request.files:
-        return render_template('index.html', message='No file part')
+        return jsonify({'error': 'No file part'})
     file = request.files['file']
     if file.filename == '':
-        return render_template('index.html', message='No selected file')
+        return jsonify({'error': 'No selected file'})
     if file and allowed_file(file.filename):
         # Сохраняем загруженное изображение
         file_path = os.path.join('uploads', file.filename)
         file.save(file_path)
         # Классифицируем изображение
         class_name = classify_image(file_path)
-        return render_template('index.html', message='Classification result: {}'.format(class_name))
+        print(class_name)
+        # Возвращаем предсказанный класс в виде JSON
+        return jsonify({'predicted_class': class_name})
     else:
-        return render_template('index.html', message='Invalid file extension')
+        return jsonify({'error': 'Invalid file extension'})
 
 # ------------------------------Раздел корзины------------------------------
 cart_items = []
@@ -148,10 +149,10 @@ def add_to_basket():
 
 @app.route('/remove_from_cart', methods=['POST'])
 def remove_from_cart():
-    data = request.json  # Получение данных из POST-запроса
-    item_name = data.get('name')  # Получение имени товара из запроса
+    data = request.json  
+    item_name = data.get('name')  
 
-    # Найдите товар в корзине и удалите его
+    
     for item in cart_items:
         if item['name'] == item_name:
             cart_items.remove(item)
