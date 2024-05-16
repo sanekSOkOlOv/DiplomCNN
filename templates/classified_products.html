@@ -47,6 +47,18 @@
                     <p>{{ message }}</p>
                 {% endif %}
             </div> -->
+            <div class="upload-container">
+                <form action="/upload" method="post" enctype="multipart/form-data">     
+                    <div class="button-upload">
+                        <input type="file" name="file" id="file" class="inputfile" accept="image/*">
+                        <label for="file">
+                            <img src="{{ url_for('static', filename='down.gif') }}" alt="Иконка загрузки">
+                        </label>
+                        <button type="button" onclick="uploadImage()" title="Нажмите, чтобы загрузить и классифицировать изображение">Поехали!</button>
+                    </div>
+                </form>
+                <div id="classification-result"></div>
+            </div>
         </div>
     </header>
 
@@ -55,10 +67,11 @@
         <div class="filter-container">
             <!-- Фильтр по цене -->
             <div class="price-filter">
-                <label for="max-price">Price:   <span id="max-price-value">0</span></label>
-                <input type="range" id="max-price" name="max-price" min="10" max="350" step="10" oninput="updateMaxPrice(this.value)">
+                <label for="max-price">Макс. цена:</label>
+                <input type="range" id="max-price" name="max-price" min="10" max="500" step="10" oninput="updateMaxPrice(this.value)">
+                <span id="max-price-value">0</span>
             </div>
-        
+    
             <!-- Фильтр по классу одежды -->
             <div class="clothing-class-filter">
                 <label for="clothing-class">Класс одежды:</label>
@@ -76,26 +89,24 @@
                     <option value="Ankle boot">Ботинки</option>
                 </select>
             </div>
-        
+        </div>
     
-            <!-- Фильтр по классификации фото -->
-            <div class="upload-container">
-                <form action="/upload" method="post" enctype="multipart/form-data">     
-                    <div class="button-upload">
-                        <input type="file" name="file" id="file" class="inputfile" accept="image/*">
-                        <label for="file">
-                            <img src="{{ url_for('static', filename='down.gif') }}" alt="Иконка загрузки">
-                        </label>
-                        <button type="button" onclick="uploadImage()" title="Нажмите, чтобы загрузить и классифицировать изображение">Go!</button>
-                    </div>
-                </form>
-                <div id="classification-result"></div>
-            </div>
+        <!-- Фильтр по классификации фото -->
+        <div class="upload-container">
+            <form action="/upload" method="post" enctype="multipart/form-data">     
+                <div class="button-upload">
+                    <input type="file" name="file" id="file" class="inputfile" accept="image/*">
+                    <label for="file">
+                        <img src="{{ url_for('static', filename='down.gif') }}" alt="Иконка загрузки">
+                    </label>
+                    <button type="button" onclick="uploadImage()" title="Нажмите, чтобы загрузить и классифицировать изображение">Поехали!</button>
+                </div>
+            </form>
+            <div id="classification-result"></div>
         </div>
 
         <button class="apply-button" onclick="applyFilters()">Применить фильтры</button>
     </div>
-    
 
     </div>
     <!-- <div id="product-container" class="row"></div> -->
