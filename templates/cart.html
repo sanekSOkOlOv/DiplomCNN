@@ -44,6 +44,7 @@
                         </div>
                         <h3>{{ item.name }}</h3>
                         <p class="p-price">${{ item.price }}</p>
+                        <p class="p-size">Size: {{ item.size }}</p>
                     </div>
                 {% endfor %}
             </div>
@@ -102,5 +103,48 @@
         </div>
     </footer>
 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('search-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Останавливаем стандартное поведение формы
+    
+                const form = event.target;
+                const formData = new FormData(form);
+    
+                // Собираем данные о товарах в корзине
+                const cartItems = [];
+                document.querySelectorAll('.cart-item').forEach(item => {
+                    const name = item.querySelector('h3').textContent;
+                    const price = item.querySelector('.p-price').textContent.replace('$', '');
+                    const size = item.querySelector('.p-size').textContent.replace('Size: ', '');
+                    cartItems.push({ name, price, size });
+                });
+    
+                // Добавляем данные о товарах в корзине в объект FormData
+                formData.append('cartItems', JSON.stringify(cartItems));
+    
+                // Отправляем данные на сервер
+                fetch('/checkout', {
+                    method: 'POST',
+                    body: formData // Отправляем объект FormData напрямую
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    // Обработка ответа, если нужно
+                })
+                .catch(error => {
+                    console.error('Ошибка при отправке формы:', error);
+                });
+            });
+        });
+    </script>
+    
 </body>
 </html>

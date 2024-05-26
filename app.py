@@ -13,7 +13,7 @@ from novaposhta.client import NovaPoshtaApi
 
 app = Flask(__name__)
 
-# ------------------------------Раздел БД----------------------------------
+# ------------------------------Розділ БД----------------------------------
 #(localdb)\MSSQLLocalDB
 
 def connect_to_mssql():
@@ -25,11 +25,10 @@ connection = connect_to_mssql()
 # Проверка успешности подключения
 if connection:
     print("Подключение к базе данных MSSQL успешно установлено.")
-    # Дальнейшие действия с подключением, если необходимо
 else:
     print("Не удалось установить подключение к базе данных MSSQL.")
 
-# ------------------------------Раздел API nova post----------------------------------
+# ------------------------------Розділ API nova post----------------------------------
 client = NovaPoshtaApi(API_KEY, timeout=30)
 
 def search_settlements(city_name):
@@ -37,10 +36,10 @@ def search_settlements(city_name):
     return settlements['data'][0]['Addresses']
 
 def search_warehouses(city_name):
-    warehouses = client.address.get_warehouses(city_name=city_name, limit=50)
+    warehouses = client.address.get_warehouses(city_name=city_name, limit=150)
     return warehouses
 
-# ------------------------------Раздел модели------------------------------------------
+# ------------------------------Розділ модели------------------------------------------
 predictedClassname = None
 # Загрузка модели
 model = load_model('FashionMNIST_CNN.h5')
@@ -67,7 +66,7 @@ def classify_image(image_path):
     return classes[class_id]
 
 
-# ------------------------------Раздел главной страницы------------------------------
+# ------------------------------Розділ главной страницы------------------------------
 # Функция для очистки содержимого папки uploads
 def clear_uploads_folder():
     folder = 'uploads'
@@ -116,29 +115,42 @@ def upload_file():
     else:
         return jsonify({'error': 'Invalid file extension'})
 
+# @app.route('/classified_products')
+# def show_classified_products():
+
+#     cursor = connection.cursor()
+#     # Выберите только те продукты, у которых class соответствует предсказанному классу
+#     cursor.execute('SELECT name, image, class, price FROM Products WHERE class = ?', (predictedClassname,))
+#     filtered_products = cursor.fetchall()
+#     cursor.close()
+#     print("TRY>>>")
+#     print(predictedClassname)
+#     return render_template('classified_products.html', products=filtered_products)
 @app.route('/classified_products')
 def show_classified_products():
-
     cursor = connection.cursor()
-    # Выберите только те продукты, у которых class соответствует предсказанному классу
-    cursor.execute('SELECT name, image, class, price FROM Products WHERE class = ?', (predictedClassname,))
+    
+    if predictedClassname == "Shirt":
+        cursor.execute('SELECT name, image, class, price FROM Products WHERE class IN (?, ?)', ("Shirt", "T-shirt/top"))
+    else:
+        cursor.execute('SELECT name, image, class, price FROM Products WHERE class = ?', (predictedClassname,))
+    
     filtered_products = cursor.fetchall()
     cursor.close()
     print("TRY>>>")
     print(predictedClassname)
     return render_template('classified_products.html', products=filtered_products)
 
-# ------------------------------Раздел корзины------------------------------
+
+# ------------------------------Розділ корзини------------------------------
 cart_items = []
 
 def calculate_total_price(cart_items):
     total_price = 0
     for item in cart_items:
-        # Проверяем, что значение цены является числом
         if isinstance(item['price'], (int, float)):
             total_price += item['price']
         else:
-            # Если значение цены не является числом, пытаемся преобразовать его в float
             try:
                 total_price += float(item['price'])
             except ValueError:
@@ -175,6 +187,49 @@ def remove_from_cart():
             return jsonify({'message': 'Товар успешно удален из корзины', 'priceall': total_price})
 
     return jsonify({'message': 'Товар не найден в корзине'})
+
+@app.route('/checkout', methods=['POST'])
+def checkout():
+    try:
+        city_name = request.form['city']
+        user_name = request.form['user_name']
+        surname = request.form['surname']
+        phone = request.form['phone']
+        payment_method = request.form['payment_method']
+        cart_items = request.form['cartItems']
+
+        cart_items = json.loads(cart_items)
+
+        # Сохраняем данные в JSON файл
+        order_data = {
+            'city': city_name,
+            'user_name': user_name,
+            'surname': surname,
+            'phone': phone,
+            'payment_method': payment_method,
+            'cart_items': cart_items,
+            'completed': False
+        }
+
+        # Добавляем текущий заказ к существующим заказам
+        all_orders_file = 'all_orders.json'
+        if os.path.exists(all_orders_file):
+            with open(all_orders_file, 'r', encoding='utf-8') as f:
+                all_orders = json.load(f)
+        else:
+            all_orders = []
+
+        all_orders.append(order_data)
+        with open(all_orders_file, 'w', encoding='utf-8') as f:
+            json.dump(all_orders, f, ensure_ascii=False, indent=4)
+
+
+        return jsonify({'message': 'Заказ успешно оформлен'}), 200
+    except KeyError as e:
+        return jsonify({'error': f'Missing form data: {str(e)}'}), 400
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 # ------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     app.run(debug=True)

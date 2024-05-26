@@ -65,6 +65,11 @@ select option:hover {
 .p-price{
     font-weight: bold;
 }
+
+.p-size {
+    font-weight: bold;
+}
+
 .user-data-form {
     display: flex;
     flex-direction: column;

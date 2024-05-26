@@ -1,0 +1,92 @@
+[
+    {
+        "city": "Киев",
+        "user_name": "Alex",
+        "surname": "Sokolov",
+        "phone": "+380679001569",
+        "payment_method": "cash",
+        "cart_items": [
+            {
+                "name": "Kargo ZED           ",
+                "price": "24.99",
+                "size": "L"
+            },
+            {
+                "name": "Kargo ZED           ",
+                "price": "24.99",
+                "size": "L"
+            }
+        ],
+        "completed": false
+    },
+    {
+        "city": "Киев",
+        "user_name": "Fedor",
+        "surname": "Biba",
+        "phone": "+380679001569",
+        "payment_method": "card",
+        "cart_items": [
+            {
+                "name": "Kargo ZED           ",
+                "price": "24.99",
+                "size": "L"
+            },
+            {
+                "name": "T-Short Logo        ",
+                "price": "20.99",
+                "size": "L"
+            },
+            {
+                "name": "T-Short Logo        ",
+                "price": "20.99",
+                "size": "L"
+            }
+        ],
+        "completed": false
+    },
+    {
+        "city": "Киев",
+        "user_name": "Fedor",
+        "surname": "Biba",
+        "phone": "+380679001569",
+        "payment_method": "card",
+        "cart_items": [
+            {
+                "name": "Kargo ZED           ",
+                "price": "24.99",
+                "size": "L"
+            },
+            {
+                "name": "T-Short Logo        ",
+                "price": "20.99",
+                "size": "L"
+            },
+            {
+                "name": "T-Short Logo        ",
+                "price": "20.99",
+                "size": "L"
+            }
+        ],
+        "completed": false
+    },
+    {
+        "city": "Дунаевцы",
+        "user_name": "Alex",
+        "surname": "Sokolov",
+        "phone": "+380679001569",
+        "payment_method": "card",
+        "cart_items": [
+            {
+                "name": "NULLT-Short Biba    ",
+                "price": "10.99",
+                "size": "L"
+            },
+            {
+                "name": "NULLT-Short Biba    ",
+                "price": "10.99",
+                "size": "L"
+            }
+        ],
+        "completed": false
+    }
+]
