@@ -21,9 +21,8 @@
             </a>
         </div>
         <div class="catalog">
-            <a href="#" class="catalog-link">Верхняя одежда (выше колена)</a>
-            <a href="#" class="catalog-link">Нижняя одежда (ниже колена)</a>
-            <a href="/cart" class="catalog-link">Корзина</a>
+            <a href="#" class="catalog-link">New products</a>
+            <a href="/" class="catalog-link">Shop</a>
         </div>
     </header>
 
@@ -31,7 +30,7 @@
 
     <div class="container">
         <div class="cart-items">
-            <h2>Корзина товаров</h2>
+            <h2 class="cart-title">Cart of your goods</h2>
             <div id="cart-items">
                 <!-- Здесь будет отображаться содержимое корзины -->
                 {% for item in cart %}
@@ -52,34 +51,32 @@
         
         <!-- Форма для заполнения данных о пользователе -->
             <div class="user-data-form">
-                <h2>Введите данные</h2>
+                <h2>Enter data</h2>
                 <form action="/checkout" method="post" id="search-form">
-                    <input list="descriptions" name="description">
-                    <datalist id="descriptions">
-                    <!-- Здесь будут элементы <option> -->
-                    </datalist>
-                    <label for="city">Поиск почтового отделения:</label>
-                    <input type="text" id="city" name="city" placeholder="Введите ваш населенный пункт">
-                    <label for="user_name">Имя:</label>
+                    <label for="user_name">Name:</label>
                     <input type="text" id="user_name" name="user_name" required>
-                    <label for="surname">Фамилия:</label>
+                    <label for="surname">Surname:</label>
                     <input type="text" id="surname" name="surname" required>
-                    <label for="phone">Телефон:</label>
+                    <label for="phone">Telephone:</label>
                     <input type="text" id="phone" name="phone" required>
-                    <label for="payment_method">Способ оплаты:</label>
+                    <label for="city">Find a post office:</label>
+                    <input type="text" id="city" name="city" placeholder="Enter your locality">
+                    <input list="descriptions" name="description" id="description">
+                    <datalist id="descriptions">
+                    </datalist>
+                    <label for="payment_method">Payment method:</label>
                     <select id="payment_method" name="payment_method" required>
-                        <option value="cash">Наличными при получении</option>
-                        <option value="card">Банковской картой</option>
+                        <option value="cash">Cash upon receipt</option>
+                        <option value="card">By bank card</option>
                     </select>
-                    <button type="submit">Оформить заказ</button>
+                    <button type="submit">Checkout</button>
                 </form>
             </div>
         
 
         <div class="checkout-summary" data-priceall="{{ priceall }}">
-            <h2>Итого к оплате:</h2>
+            <h2>Total to be paid:</h2>
             <p>${{ priceall }}</p>
-            <!-- Здесь можно добавить дополнительную информацию, например, стоимость доставки -->
         </div>
     </div>
 
@@ -89,9 +86,9 @@
             <p>Ми – ваш надійний партнер у світі моди. Наша команда прагне надати вам найкращий вибір одягу, який підкреслить вашу унікальність та стиль. Ми ретельно відбираємо товари, щоб задовольнити ваші потреби та надати вам найкращі модні рішення. Наша мета - зробити вашу покупку приємною та зручною, а ваш образ стильним та впевненим.</p>
         </div>
         <div class="footer-block">
-            <h3>Каталог</h3>
-            <a href="#" class="catalog-link">Верхняя одежда (выше колена)</a>
-            <a href="#" class="catalog-link">Нижняя одежда (ниже колена)</a>
+            <h3>Catalog</h3>
+            <a href="#" class="catalog-link">New products</a>
+            <a href="#" class="catalog-link">Looking for a job</a>
         </div>
         <div class="footer-block">
             <h3>Соціальні мережі</h3>
@@ -111,7 +108,21 @@
     
                 const form = event.target;
                 const formData = new FormData(form);
+                
+                const phoneInput = document.getElementById('phone').value;
+                const phonePattern = /^\+?[0-9\s\-]+$/;
     
+                if (!phonePattern.test(phoneInput)) {
+                    alert('Неверный формат телефона. Телефон должен содержать только цифры, пробелы, тире и может начинаться с +');
+                    return;
+                }
+    
+                // Дополнительная проверка на количество цифр в номере
+                const digitCount = phoneInput.replace(/\D/g, '').length;
+                if (digitCount < 10 || digitCount > 15) {
+                    alert('Номер телефона должен содержать от 10 до 15 цифр.');
+                    return;
+                }
                 // Собираем данные о товарах в корзине
                 const cartItems = [];
                 document.querySelectorAll('.cart-item').forEach(item => {
@@ -121,13 +132,18 @@
                     cartItems.push({ name, price, size });
                 });
     
-                // Добавляем данные о товарах в корзине в объект FormData
+                // Получаем выбранное значение из списка почтовых отделений
+                const postOfficeInput = document.getElementById('description').value;
+    
+                // Добавляем данные о почтовом отделении в объект formData
+                formData.append('description', postOfficeInput);
+                
+                // Добавляем данные о товарах в корзине в объект formData
                 formData.append('cartItems', JSON.stringify(cartItems));
     
-                // Отправляем данные на сервер
                 fetch('/checkout', {
                     method: 'POST',
-                    body: formData // Отправляем объект FormData напрямую
+                    body: formData 
                 })
                 .then(response => {
                     if (!response.ok) {
@@ -137,7 +153,8 @@
                 })
                 .then(data => {
                     console.log(data);
-                    // Обработка ответа, если нужно
+                    alert('Заказ оформлен'); // Показываем уведомление
+                    window.location.href = '/'; // Перенаправляем на начальную страницу
                 })
                 .catch(error => {
                     console.error('Ошибка при отправке формы:', error);
@@ -145,6 +162,7 @@
             });
         });
     </script>
+    
     
 </body>
 </html>

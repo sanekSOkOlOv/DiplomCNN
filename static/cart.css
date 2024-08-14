@@ -83,6 +83,7 @@ select option:hover {
     font-family: Arial, sans-serif; 
     flex: 0 0 300px; /* Фиксированная ширина блока формы */
     height: 650px;
+    font-family: "Abril Fatface", serif;
 }
 
 .cart-item img {
@@ -91,6 +92,11 @@ select option:hover {
     margin-right: 10px; /* Отступ между изображением и текстом */
     position: relative;
 }
+
+.cart-title {
+    text-align: center; /* Центрируем текст по горизонтали */
+}
+
 
 .cart-item {
     position: relative;
@@ -145,7 +151,7 @@ select option:hover {
     border-radius: 5px; /* Закругленные углы */
     margin-top: 20px; /* Отступ сверху */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень блока */
-    font-family: "Roboto", Arial, sans-serif;
+    font-family: "Abril Fatface", serif;
 }
 
 .checkout-summary h2 {
@@ -154,5 +160,5 @@ select option:hover {
 
 .checkout-summary p {
     margin-bottom: 10px;
-    font-family: "Roboto", Arial, sans-serif;
+    font-family: "Abril Fatface", serif;
 }

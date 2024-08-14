@@ -39,20 +39,10 @@ def print_all_products(conn):
 def insert_products(conn):
     cursor = conn.cursor()
 
-    # SQL-запрос для добавления данных
     sql = """
     INSERT INTO Products (name, image, price, class)
     VALUES
-        ('Big Baby Bag', 'static/images/Backpage1.jpeg', 25.99, 'Bag'),
-        ('Pullover Dragon King', 'static/images/switer1.jpeg', 40.00, 'Pullover'),
-        ('Kargo Mini', 'static/images/pullover2.jpeg', 24.99, 'Pullover'),
-        ('Kargo Mini', 'static/images/Trouser4.jpeg', 22.99, 'Trouser'),
-        ('Kagro Top', 'static/images/Trouser3.jpeg', 24.99, 'Trouser'),
-        ('Classic Sport', 'static/images/Trouser2.jpeg', 19.00, 'Trouser'),
-        ('Kargo ZED', 'static/images/Trouser1.jpeg', 24.99, 'Trouser'),
-        ('T-Short Logo', 'static/images/Tshortlogo.jpeg', 20.99, 'T-shirt/top'),
-        ('T-Short Tend', 'static/images/Tshortend.jpeg', 20.99, 'T-shirt/top'),
-        ('T-Short Blue', 'static/images/Tshortblue.jpeg', 20.99, 'T-shirt/top');
+       ('Colab Riki&Morty', 'static/images/pullover6.jpeg', 85.00, 'Pullover');
         
        
     """
@@ -60,9 +50,9 @@ def insert_products(conn):
     try:
         cursor.execute(sql)
         conn.commit()
-        print("Данные успешно добавлены в таблицу Products.")
+        print("Дані успішно додані до таблиці Products.")
     except Exception as e:
-        print(f"Ошибка при добавлении данных: {e}")
+        print(f"Помилка при додаванні даних: {e}")
         conn.rollback()
     finally:
         cursor.close()
@@ -75,7 +65,6 @@ def delete_product_by_id(product_id):
         # SQL-запрос для удаления элемента с указанным ID
         cursor.execute("DELETE FROM Products WHERE ID = ?", product_id)
         
-        # Подтверждаем транзакцию
         conn.commit()
         print(f"Элемент с ID {product_id} успешно удален.")
     
@@ -88,7 +77,10 @@ def delete_product_by_id(product_id):
 if connection:
     print("Подключение к базе данных MSSQL успешно установлено.")
     # insert_products(connection)
-    # delete_product_by_id(4003)
+    # delete_product_by_id(6002)
+    # delete_product_by_id(6003)
+    # delete_product_by_id(6014)
+    # delete_product_by_id(6016)
     print_all_products(connection)
     connection.close()
 else:

@@ -11,7 +11,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
-    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </head>
 <body>
     <!-- Логотип -->
@@ -23,30 +22,8 @@
         </div>
 
         <div class="catalog">
-            <a href="#" class="catalog-link">Верхняя одежда (выше колена)</a>
-            <a href="#" class="catalog-link">Нижняя одежда (ниже колена)</a>
-            <a href="/cart" class="catalog-link">Корзина</a>
-        </div>
-        
-        
-        <!-- Классификация изображений -->
-        <div class="classification">
-            <h3>Классификация изображений</h3>
-            <!-- <div class="upload-container">
-                <form action="/upload" method="post" enctype="multipart/form-data">     
-                    <div class="button-upload">
-                        <input type="file" name="file" id="file" class="inputfile" accept="image/*">
-                        <label for="file">
-                            <img src="{{ url_for('static', filename='down.gif') }}" alt="Иконка загрузки">
-                        </label>
-                        <button type="submit" title="Натисніть піктограму завантаження та виберіть файл для класифікації. Далі натисніть кнопку і насолоджуйтесь результатом!">Поехали!</button>
-                    </div>
-                </form>
-                
-                {% if message %}
-                    <p>{{ message }}</p>
-                {% endif %}
-            </div> -->
+            <a href="/new_products" class="catalog-link">New products</a>
+            <a href="/cart" class="catalog-link">Cart</a>
         </div>
     </header>
 
@@ -61,19 +38,19 @@
         
             <!-- Фильтр по классу одежды -->
             <div class="clothing-class-filter">
-                <label for="clothing-class">Класс одежды:</label>
+                <label for="clothing-class">Type:</label>
                 <select id="clothing-class" name="clothing-class">
-                    <option value="">Все</option>
-                    <option value="T-shirt/top">Футболки / топы</option>
-                    <option value="Trouser">Брюки</option>
-                    <option value="Pullover">Свитер</option>
-                    <option value="Dress">Платье</option>
-                    <option value="Coat">Пальто</option>
-                    <option value="Sandal">Сандалии</option>
-                    <option value="Shirt">Рубашка</option>
-                    <option value="Sneaker">Кроссовки</option>
-                    <option value="Bag">Сумка</option>
-                    <option value="Ankle boot">Ботинки</option>
+                    <option value="">All</option>
+                    <option value="T-shirt/top">T-shirt/top</option>
+                    <option value="Trouser">Trouser</option>
+                    <option value="Pullover">Pullover</option>
+                    <option value="Dress">Dress</option>
+                    <option value="Coat">Coat</option>
+                    <option value="Sandal">Sandal</option>
+                    <option value="Shirt">Shirt</option>
+                    <option value="Sneaker">Sneaker</option>
+                    <option value="Bag">Bag</option>
+                    <option value="Ankle boot">Ankle boot</option>
                 </select>
             </div>
         
@@ -93,7 +70,7 @@
             </div>
         </div>
 
-        <button class="apply-button" onclick="applyFilters()">Применить фильтры</button>
+        <button class="apply-button" onclick="applyFilters()">Apply filters</button>
     </div>
     
 
@@ -113,25 +90,25 @@
                     <p>${{ product.price }}</p>
                     <p class="product-class">{{product.class}}</p>
                 </div>
-                <div class="radio-input">
+                <div class="radio-input" id="size-selector">
                     <label>
-                    <input value="M" name="value-radio" id="M" type="radio">
-                    <span>M</span>
+                        <input value="M" name="value-radio-{{ loop.index }}" id="M-{{ loop.index }}" type="radio">
+                        <span>M</span>
                     </label>
                     <label>
-                      <input value="L" name="value-radio" id="L" type="radio" checked>
-                    <span>L</span>
+                        <input value="L" name="value-radio-{{ loop.index }}" id="L-{{ loop.index }}" type="radio" checked>
+                        <span>L</span>
                     </label>
                     <label>
-                      <input value="XL" name="value-radio" id="XL" type="radio">
-                    <span>XL</span>
+                        <input value="XL" name="value-radio-{{ loop.index }}" id="XL-{{ loop.index }}" type="radio">
+                        <span>XL</span>
                     </label>
                     <label>
-                      <input value="XXL" name="value-radio" id="XXL" type="radio">
-                    <span>XXL</span>
+                        <input value="XXL" name="value-radio-{{ loop.index }}" id="XXL-{{ loop.index }}" type="radio">
+                        <span>XXL</span>
                     </label>
                     <span class="selection"></span>
-                  </div>
+                </div>
             </div>
         {% endfor %}
     </div>
@@ -142,9 +119,9 @@
             <p>Ми – ваш надійний партнер у світі моди. Наша команда прагне надати вам найкращий вибір одягу, який підкреслить вашу унікальність та стиль. Ми ретельно відбираємо товари, щоб задовольнити ваші потреби та надати вам найкращі модні рішення. Наша мета - зробити вашу покупку приємною та зручною, а ваш образ стильним та впевненим.</p>
         </div>
         <div class="footer-block">
-            <h3>Каталог</h3>
-            <a href="#" class="catalog-link">Верхняя одежда (выше колена)</a>
-            <a href="#" class="catalog-link">Нижняя одежда (ниже колена)</a>
+            <h3>Catalog</h3>
+            <a href="#" class="catalog-link">New products</a>
+            <a href="#" class="catalog-link">Looking for a job</a>
         </div>
         <div class="footer-block">
             <h3>Соціальні мережі</h3>
@@ -155,6 +132,6 @@
             </ul>
         </div>
     </footer>
-    
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </body>
 </html>

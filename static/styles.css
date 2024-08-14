@@ -7,7 +7,7 @@ input[type="file"] {
 }
 
 #file-upload {
-    display: none; /* скрыть стандартную кнопку */
+    display: none; 
 }
 
 #file-upload-name {
@@ -18,13 +18,13 @@ input[type="file"] {
 
 .button-upload {
     display: flex;
-    align-items: center; /* Выравнивание элементов по вертикали */
+    align-items: center;
 }
 
 .button-upload input[type="file"],
 .button-upload label,
 .button-upload button {
-    margin-right: 10px; /* Пространство между элементами */
+    margin-right: 10px; 
 }
 
 .button-upload button {
@@ -64,17 +64,15 @@ input[type="file"] {
     transform: translateY(0);
 }
 .button-upload label:hover img {
-    cursor: pointer; /* Изменение курсора при наведении */
+    cursor: pointer;
 }
 
 .button-upload img {
-    /* Задаем статичное положение изображения */
     transition: transform 0.3s ease-in-out;
     animation: none;
 }
 
 .button-upload label:hover img {
-    /* Анимация применяется только при наведении */
     animation: none; /* Отключаем текущую анимацию */
     animation: moveUp 1s infinite alternate; /* Применяем новую анимацию */
 }
@@ -101,8 +99,8 @@ header {
     
 }
 .logo img {
-    max-height: 100px; /* Здесь указывается максимальная высота в пикселях */
-    animation: none; /* Отключаем текущую анимацию */
+    max-height: 100px; 
+    animation: none;
     animation: moveUp 1s infinite alternate;
 }
 /*________________________________________________________________________________________*/
@@ -130,31 +128,31 @@ header {
 /*________________________________________________________________________________________*/
 
 .classification {
-    text-align: center; /* Align text in the center */
-    margin-right: 20px; /* Add some spacing to the right to separate from other elements */
+    text-align: center; 
+    margin-right: 20px; 
 }
 
 .upload-container {
     display: flex;
-    flex-direction: column; /* Align items in a column */
-    align-items: center; /* Align items in the center */
+    flex-direction: column; 
+    align-items: center; 
 }
 
 .inputfile {
-    display: none; /* Hide the default file input */
+    display: none; 
 }
 /*________________________________________________________________________________________*/
 
 footer {
-    display: flex; /* Используем flexbox */
-    justify-content: space-between; /* Распределение блоков по всей ширине */
-    padding: 20px; /* Добавляем отступы для красоты */
+    display: flex; 
+    justify-content: space-between; 
+    padding: 20px; 
     background-color: #fbfbfb;
 }
 
 .footer-block {
-    flex: 1; /* Равное распределение пространства между блоками */
-    margin-right: 20px; /* Отступ между блоками */
+    flex: 1; 
+    margin-right: 20px; 
 }
 
 .footer-block:last-child {
@@ -166,10 +164,11 @@ footer {
     font-family: "Abril Fatface", serif;
     display: flex;
     flex-wrap: wrap;
+    margin-left: 100px;
 }
 #product-container img {
-    width: 60%; /* Желаемая ширина изображения */
-    height: auto; /* Автоматическое подстраивание высоты для сохранения пропорций */
+    width: 300px; 
+    height: auto; 
 }
 
 #product-container p {
@@ -183,8 +182,8 @@ footer {
     width: calc(25% - 20px); 
     margin: 10px; 
     flex-wrap: wrap;
-    margin: 10px; /* Отступы по горизонтали */
-    margin-bottom: 20px; /* Дополнительный отступ снизу между продуктами */
+    margin: 10px; 
+    margin-bottom: 20px; 
 }
 .product img {
     transition: transform 0.3s ease-in-out; /* Добавляем плавную анимацию */
@@ -296,8 +295,8 @@ footer {
     display: flex;
     flex-direction: column;
     background-color: #fbfbfb;
-    border: 1px solid #000000; /* Добавляем рамку вокруг блока */
-    border-radius:30px; /* Задаем радиус скругления углов */
+    border: 1px solid #000000; 
+    border-radius:30px; 
     width: 60%;
     margin: 0 auto;
     padding: 25px;
@@ -325,23 +324,23 @@ footer {
 .price-filter,
 .clothing-class-filter {
     flex: 1; /* Распределение пространства между блоками */
-    margin-right: 1px; /* Добавим немного отступа между блоками */
+    margin-right: 1px;
 }
 
 .clothing-class-filter,
 .price-filter label {
     display: flex;
-    justify-content: center; /* Центрируем текст и значение */
-    align-items: center; /* Выравниваем текст и значение по вертикали */
+    justify-content: center; 
+    align-items: center; 
     gap: 5px; /* Отступ между текстом и значением */
     font-size: 20px;
 }
 
 
 .apply-button {
-    width: 250px; /* Устанавливаем ширину кнопки равной ширине ее содержим ого */
-    margin: 0 auto; /* Центрируем кнопку по горизонтали */
-    display: block; /* Делаем кнопку блочным элементом */
+    width: 250px; 
+    margin: 0 auto; 
+    display: block; 
     margin-bottom: 15px;
 
     appearance: none; 

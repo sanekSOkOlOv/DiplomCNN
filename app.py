@@ -8,6 +8,7 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 from tensorflow.keras.models import load_model
 import requests
+import gspread
 
 from novaposhta.client import NovaPoshtaApi
 
@@ -28,7 +29,7 @@ if connection:
 else:
     print("Не удалось установить подключение к базе данных MSSQL.")
 
-# ------------------------------Розділ API nova post----------------------------------
+# ------------------------------Розділ API -----------------------------------
 client = NovaPoshtaApi(API_KEY, timeout=30)
 
 def search_settlements(city_name):
@@ -39,6 +40,10 @@ def search_warehouses(city_name):
     warehouses = client.address.get_warehouses(city_name=city_name, limit=150)
     return warehouses
 
+gc = gspread.service_account(filename='gspread-project-424508-94ae4e7c6185.json')
+
+# Відкриваємо Google Sheets
+wks = gc.open("orders").sheet1
 # ------------------------------Розділ модели------------------------------------------
 predictedClassname = None
 # Загрузка модели
@@ -80,7 +85,7 @@ def clear_uploads_folder():
         except Exception as e:
             print('Failed to delete %s. Reason: %s' % (file_path, e))
 
-# Главная страница
+# Головна сторінка
 @app.route('/')
 def index():
     cursor = connection.cursor()
@@ -89,8 +94,18 @@ def index():
     cursor.close()
 
     
-    # Передача данных в шаблон
+    # Передача даних до шаблону
     return render_template('index.html', products=products)
+
+@app.route('/new_products')
+def new_products():
+    cursor = connection.cursor()
+    cursor.execute('SELECT TOP 10 name, image, class, price FROM Products ORDER BY id DESC')
+    new_products = cursor.fetchall()
+    cursor.close()
+
+    # Передача даних до шаблону
+    return render_template('new_products.html', products=new_products)
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -103,14 +118,14 @@ def upload_file():
     if file.filename == '':
         return jsonify({'error': 'No selected file'})
     if file and allowed_file(file.filename):
-        # Сохраняем загруженное изображение
+        # Зберігаємо завантажене зображення
         file_path = os.path.join('uploads', file.filename)
         file.save(file_path)
-        # Классифицируем изображение
+        # Класифікуємо зображення
         class_name = classify_image(file_path)
         predictedClassname = class_name
         print(class_name)
-        # Возвращаем предсказанный класс в виде JSON
+        # Повертаємо передбачений клас у вигляді JSON
         return jsonify({'predicted_class': class_name})
     else:
         return jsonify({'error': 'Invalid file extension'})
@@ -154,7 +169,7 @@ def calculate_total_price(cart_items):
             try:
                 total_price += float(item['price'])
             except ValueError:
-                print(f"Ошибка: Невозможно преобразовать значение цены '{item['price']}' в число.")
+                print(f"Помилка: Неможливо змінити значення ціни '{item['price']}' на число.")
     return round(total_price, 2)
 
 
@@ -197,21 +212,24 @@ def checkout():
         phone = request.form['phone']
         payment_method = request.form['payment_method']
         cart_items = request.form['cartItems']
+        description = request.form.get('description')  # Получаем значение почтового отделения
 
         cart_items = json.loads(cart_items)
 
-        # Сохраняем данные в JSON файл
+        total_price = sum(float(item['price']) for item in cart_items)
+
         order_data = {
             'city': city_name,
             'user_name': user_name,
             'surname': surname,
             'phone': phone,
             'payment_method': payment_method,
+            'description': description, 
             'cart_items': cart_items,
+            'total_price': total_price,
             'completed': False
         }
 
-        # Добавляем текущий заказ к существующим заказам
         all_orders_file = 'all_orders.json'
         if os.path.exists(all_orders_file):
             with open(all_orders_file, 'r', encoding='utf-8') as f:
@@ -223,12 +241,16 @@ def checkout():
         with open(all_orders_file, 'w', encoding='utf-8') as f:
             json.dump(all_orders, f, ensure_ascii=False, indent=4)
 
+        # Отправка данных в Google Sheets
+        row = [city_name, user_name, surname, phone, payment_method, description, json.dumps(cart_items), total_price, False]
+        wks.append_row(row)
 
         return jsonify({'message': 'Заказ успешно оформлен'}), 200
     except KeyError as e:
         return jsonify({'error': f'Missing form data: {str(e)}'}), 400
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 # ------------------------------------------------------------------------------------------
 if __name__ == '__main__':
