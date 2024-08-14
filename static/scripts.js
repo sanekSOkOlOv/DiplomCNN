@@ -1,24 +1,52 @@
+// document.addEventListener("DOMContentLoaded", function() {
+//     fetch('/static/products.json')
+//         .then(response => response.json())
+//         .then(data => {
+//             const productContainer = document.getElementById('product-container');
+//             data.forEach(product => {
+//                 const productDiv = document.createElement('div');
+//                 productDiv.classList.add('product');
+//                 productDiv.innerHTML = `
+//                     <img src="${product.image}" alt="${product.name}" onclick="addToBasket('${product.name}', '${product.image}', ${product.price})">
+//                     <h4>${product.name}</h4>
+//                     <p>Цена: $${product.price.toFixed(2)}</p>
+//                 `;
+//                 productContainer.appendChild(productDiv);
+//             });
+//         })
+//         .catch(error => console.error('Ошибка загрузки данных о товарах:', error));
+// });
 document.addEventListener("DOMContentLoaded", function() {
-    fetch('/static/products.json')
-        .then(response => response.json())
-        .then(data => {
-            const productContainer = document.getElementById('product-container');
-            data.forEach(product => {
-                const productDiv = document.createElement('div');
-                productDiv.classList.add('product');
-                productDiv.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}" onclick="addToBasket('${product.name}', '${product.image}', ${product.price})">
-                    <h4>${product.name}</h4>
-                    <p>Цена: $${product.price.toFixed(2)}</p>
-                `;
-                productContainer.appendChild(productDiv);
-            });
-        })
-        .catch(error => console.error('Ошибка загрузки данных о товарах:', error));
 });
 
+function getSelectedSize() {
+    const sizeSelector = document.querySelector('.radio-input'); // Обратите внимание, что изменен метод поиска, чтобы найти первый элемент с классом "radio-input"
+    if (sizeSelector) {
+        console.log('Size selector found');
+        const radioInputs = sizeSelector.querySelectorAll('input[name^="value-radio-"]'); // Поиск радио-кнопок, имя которых начинается с "value-radio-"
+        let selectedSize = 'L'; // Устанавливаем значение по умолчанию
+        for (let i = 0; i < radioInputs.length; i++) {
+            if (radioInputs[i].checked) {
+                selectedSize = radioInputs[i].value;
+                console.log('Selected size found:', selectedSize);
+                return selectedSize; // Выход из функции, как только найден выбранный размер
+            }
+        }
+        console.log('No size selected, defaulting to:', selectedSize);
+        return selectedSize; // Возвращаем значение по умолчанию, если ни один размер не выбран
+    } else {
+        console.error('Size selector element not found');
+        return 'L'; // Возвращаем значение по умолчанию, если элемент не найден
+    }
+}
+
+
 function addToBasket(name, image, price) {
-    const product = { name: name, image: image, price: price };
+    const size = getSelectedSize();
+    const product = { name: name, image: image, price: price, size: size};
+    console.log('Selected size:', size);
+
+
     fetch('/add_to_basket', {
         method: 'POST',
         headers: {
@@ -40,52 +68,92 @@ function addToBasket(name, image, price) {
     });
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    const cartItems = document.querySelectorAll('.cart-item');
+function updateMaxPrice(value) {
+    document.getElementById('max-price-value').textContent = value;
+}
 
-    cartItems.forEach(item => {
-        const cancelButton = item.querySelector('.cancel-overlay img');
+// function applyPriceFilter() {
+//     var maxPrice = parseFloat(document.getElementById('max-price').value);
 
-        cancelButton.addEventListener('click', function() {
-            const itemName = item.querySelector('h3').textContent;
-            
-            fetch('/remove_from_cart', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ name: itemName }) // Передача имени товара в формате JSON
-            })
-            .then(response => response.json()) // Преобразование ответа в JSON
-            .then(data => {
-                console.log(data.message);
-                updateTotalPrice(data.priceall); // Обновление общей стоимости
-                showNotification(data.message); // Показ уведомления
-                item.remove(); // Удаление элемента из DOM
-            })
-            .catch(error => {
-                console.error('Ошибка при удалении товара из корзины:', error);
-            });
-        });
+//     // Обойти все продукты
+//     var products = document.querySelectorAll('.product');
+//     products.forEach(function(product) {
+//         var priceElement = product.querySelector('.product-item p');
+//         var price = parseFloat(priceElement.textContent.replace('$', ''));
+
+//         // Проверить, попадает ли цена продукта в заданный максимальный диапазон
+//         if (price <= maxPrice) {
+//             // Если цена не превышает максимальную, показать продукт
+//             product.style.display = 'block';
+//         } else {
+//             // Если цена превышает максимальную, скрыть продукт
+//             product.style.display = 'none';
+//         }
+//     });
+// }
+
+// function applyClothingClassFilter() {
+//     var selectedClass = document.getElementById('clothing-class').value;
+
+//     // Обойти все продукты
+//     var products = document.querySelectorAll('.product');
+//     products.forEach(function(product) {
+//         var classElement = product.querySelector('.product-class');
+//         var productClass = classElement.textContent.trim();
+//         console.log('Applying clothing class filter with predicted class:', selectedClass);
+//         // Проверить, соответствует ли класс продукта выбранному классу
+//         if (selectedClass === '' || productClass === selectedClass) {
+//             // Если продукт соответствует выбранному классу или выбран "Все", показать продукт
+//             product.style.display = 'block';
+//         } else {
+//             // Если продукт не соответствует выбранному классу, скрыть продукт
+//             product.style.display = 'none';
+//         }
+//     });
+// }
+
+function applyFilters() {
+    var maxPrice = parseFloat(document.getElementById('max-price').value);
+    var selectedClass = document.getElementById('clothing-class').value;
+
+    var products = document.querySelectorAll('.product');
+    products.forEach(function(product) {
+        var priceElement = product.querySelector('.product-item p');
+        var price = parseFloat(priceElement.textContent.replace('$', ''));
+        
+        var classElement = product.querySelector('.product-class');
+        var productClass = classElement.textContent.trim();
+        
+        // Проверка и применение фильтров
+        var pricePass = price <= maxPrice || maxPrice === 0;
+        var classPass = selectedClass === '' || productClass === selectedClass;
+        
+        if (pricePass && classPass) {
+            product.style.display = 'block';
+        } else {
+            product.style.display = 'none';
+        }
     });
-});
-
-function showNotification(message) {
-    // Находим элемент уведомления
-    var notification = document.getElementById('notification');
-    // Устанавливаем текст уведомления
-    notification.innerHTML = message;
-    // Показываем уведомление
-    notification.style.display = 'block';
-    // Через 3 секунды скрываем уведомление
-    setTimeout(function() {
-        notification.style.display = 'none';
-    }, 3000);
 }
 
-function updateTotalPrice(price) {
-    const totalPriceElement = document.querySelector('.checkout-summary p');
-    if (totalPriceElement) {
-        totalPriceElement.textContent = `$${price}`;
-    }
+function uploadImage() {
+    var input = document.getElementById('file');
+    var file = input.files[0];
+
+    var formData = new FormData();
+    formData.append('file', file);
+
+    fetch('/upload', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Получить классификацию изображения из данных
+        var predictedClass = data.predicted_class;
+        window.location.href = '/classified_products';
+    })
+    .catch(error => console.error('Ошибка при загрузке изображения:', error));
 }
+
+    

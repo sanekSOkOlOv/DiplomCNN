@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </head>
 <body>
     <!-- Логотип -->
@@ -22,7 +23,7 @@
         </div>
 
         <div class="catalog">
-            <a href="/new_products" class="catalog-link">New products</a>
+            <a href="#" class="catalog-link">New products</a>
             <a href="/cart" class="catalog-link">Cart</a>
         </div>
     </header>
@@ -72,7 +73,6 @@
 
         <button class="apply-button" onclick="applyFilters()">Apply filters</button>
     </div>
-    
 
     </div>
     <!-- <div id="product-container" class="row"></div> -->
@@ -90,25 +90,25 @@
                     <p>${{ product.price }}</p>
                     <p class="product-class">{{product.class}}</p>
                 </div>
-                <div class="radio-input" id="size-selector">
+                <div class="radio-input">
                     <label>
-                        <input value="M" name="value-radio-{{ loop.index }}" id="M-{{ loop.index }}" type="radio">
-                        <span>M</span>
+                    <input value="M" name="value-radio" id="M" type="radio">
+                    <span>M</span>
                     </label>
                     <label>
-                        <input value="L" name="value-radio-{{ loop.index }}" id="L-{{ loop.index }}" type="radio" checked>
-                        <span>L</span>
+                      <input value="L" name="value-radio" id="L" type="radio" checked>
+                    <span>L</span>
                     </label>
                     <label>
-                        <input value="XL" name="value-radio-{{ loop.index }}" id="XL-{{ loop.index }}" type="radio">
-                        <span>XL</span>
+                      <input value="XL" name="value-radio" id="XL" type="radio">
+                    <span>XL</span>
                     </label>
                     <label>
-                        <input value="XXL" name="value-radio-{{ loop.index }}" id="XXL-{{ loop.index }}" type="radio">
-                        <span>XXL</span>
+                      <input value="XXL" name="value-radio" id="XXL" type="radio">
+                    <span>XXL</span>
                     </label>
                     <span class="selection"></span>
-                </div>
+                  </div>
             </div>
         {% endfor %}
     </div>
@@ -119,9 +119,9 @@
             <p>Ми – ваш надійний партнер у світі моди. Наша команда прагне надати вам найкращий вибір одягу, який підкреслить вашу унікальність та стиль. Ми ретельно відбираємо товари, щоб задовольнити ваші потреби та надати вам найкращі модні рішення. Наша мета - зробити вашу покупку приємною та зручною, а ваш образ стильним та впевненим.</p>
         </div>
         <div class="footer-block">
-            <h3>Catalog</h3>
-            <a href="#" class="catalog-link">New products</a>
-            <a href="#" class="catalog-link">Looking for a job</a>
+            <h3>Каталог</h3>
+            <a href="#" class="catalog-link">Верхняя одежда (выше колена)</a>
+            <a href="#" class="catalog-link">Нижняя одежда (ниже колена)</a>
         </div>
         <div class="footer-block">
             <h3>Соціальні мережі</h3>
@@ -132,6 +132,6 @@
             </ul>
         </div>
     </footer>
-    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+    
 </body>
 </html>

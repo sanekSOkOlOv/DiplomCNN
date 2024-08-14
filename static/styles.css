@@ -7,7 +7,7 @@ input[type="file"] {
 }
 
 #file-upload {
-    display: none; /* скрыть стандартную кнопку */
+    display: none; 
 }
 
 #file-upload-name {
@@ -18,13 +18,13 @@ input[type="file"] {
 
 .button-upload {
     display: flex;
-    align-items: center; /* Выравнивание элементов по вертикали */
+    align-items: center;
 }
 
 .button-upload input[type="file"],
 .button-upload label,
 .button-upload button {
-    margin-right: 10px; /* Пространство между элементами */
+    margin-right: 10px; 
 }
 
 .button-upload button {
@@ -35,7 +35,7 @@ input[type="file"] {
     box-sizing: border-box;
     color: #3B3B3B;
     cursor: pointer;
-    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-family: "Abril Fatface", serif;
     font-size: 16px;
     font-weight: 600;
     line-height: normal;
@@ -64,17 +64,15 @@ input[type="file"] {
     transform: translateY(0);
 }
 .button-upload label:hover img {
-    cursor: pointer; /* Изменение курсора при наведении */
+    cursor: pointer;
 }
 
 .button-upload img {
-    /* Задаем статичное положение изображения */
     transition: transform 0.3s ease-in-out;
     animation: none;
 }
 
 .button-upload label:hover img {
-    /* Анимация применяется только при наведении */
     animation: none; /* Отключаем текущую анимацию */
     animation: moveUp 1s infinite alternate; /* Применяем новую анимацию */
 }
@@ -91,6 +89,7 @@ header {
     align-items: center;
     background-color: #fbfbfb;
 }
+
 /*________________________________________________________________________________________*/
 
 .logo {
@@ -100,27 +99,27 @@ header {
     
 }
 .logo img {
-    max-height: 100px; /* Здесь указывается максимальная высота в пикселях */
-    animation: none; /* Отключаем текущую анимацию */
+    max-height: 100px; 
+    animation: none;
     animation: moveUp 1s infinite alternate;
 }
 /*________________________________________________________________________________________*/
 
 .catalog {
     text-align: center;
-    
+    font-family: "Abril Fatface", serif;
+    font-size:large;
 }
 .catalog-link {
     display: inline-block;
     margin-right: 20px;
     text-decoration: none;
     color: black;
-    font-weight: bold;
+    font-weight: normal;
     transition: color 0.3s ease-in-out; /* Плавный переход цвета */
 }
 .catalog-link:hover {
-    text-decoration: underline;
-    font-weight: bold;
+    font-weight:bold;
     background-image: repeating-conic-gradient(#553c9a 0%, #553c9a 10%, #ee4b2b 10%, #ee4b2b 20%, #00c2cb 20%, #00c2cb 30%);
     -webkit-background-clip: text; /* Для поддержки веб-кит браузеров */
     background-clip: text;
@@ -129,31 +128,31 @@ header {
 /*________________________________________________________________________________________*/
 
 .classification {
-    text-align: center; /* Align text in the center */
-    margin-right: 20px; /* Add some spacing to the right to separate from other elements */
+    text-align: center; 
+    margin-right: 20px; 
 }
 
 .upload-container {
     display: flex;
-    flex-direction: column; /* Align items in a column */
-    align-items: center; /* Align items in the center */
+    flex-direction: column; 
+    align-items: center; 
 }
 
 .inputfile {
-    display: none; /* Hide the default file input */
+    display: none; 
 }
 /*________________________________________________________________________________________*/
 
 footer {
-    display: flex; /* Используем flexbox */
-    justify-content: space-between; /* Распределение блоков по всей ширине */
-    padding: 20px; /* Добавляем отступы для красоты */
+    display: flex; 
+    justify-content: space-between; 
+    padding: 20px; 
     background-color: #fbfbfb;
 }
 
 .footer-block {
-    flex: 1; /* Равное распределение пространства между блоками */
-    margin-right: 20px; /* Отступ между блоками */
+    flex: 1; 
+    margin-right: 20px; 
 }
 
 .footer-block:last-child {
@@ -162,161 +161,242 @@ footer {
 /*________________________________________________________________________________________*/
 
 #product-container {
+    font-family: "Abril Fatface", serif;
     display: flex;
     flex-wrap: wrap;
+    margin-left: 100px;
 }
 #product-container img {
-    width: 60%; /* Желаемая ширина изображения */
-    height: auto; /* Автоматическое подстраивание высоты для сохранения пропорций */
+    width: 300px; 
+    height: auto; 
 }
+
+#product-container p {
+    
+    font-weight:normal;
+    font-size:larger;
+    
+}
+
 .product {
     width: calc(25% - 20px); 
     margin: 10px; 
+    flex-wrap: wrap;
+    margin: 10px; 
+    margin-bottom: 20px; 
 }
-/*________________________________________________________________________________________*/
-.container {
-    display: flex;
-    justify-content: space-between;
-}
-.cart-items {
-    flex: 1;
-    overflow-y: auto;
-}
-.user-data-form {
-    display: flex;
-    flex-direction: column;
+.product img {
+    transition: transform 0.3s ease-in-out; /* Добавляем плавную анимацию */
+    cursor: pointer;
     align-items: center;
-    max-width: 300px; 
-    margin-right: 450px; 
-    padding: 20px; 
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif; 
-    flex: 0 0 300px; /* Фиксированная ширина блока формы */
-    margin-left: 20px; 
-}
-.user-data-form form {
-    width: 100%;
-}
-.user-data-form label,
-.user-data-form input {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px; /* Отступ между полями */
-}
-select {
-    appearance: none; /* Удаление стандартного стиля элемента в браузере */
-    padding: 10px; /* Поля вокруг текста внутри элемента */
-    font-size: 16px; /* Размер текста */
-    border: 1px solid #ccc; /* Граница */
-    border-radius: 5px; /* Скругление углов */
-    background-color: #f8f8f8; /* Цвет фона */
-    width: 100%; /* Ширина элемента */
-    cursor: pointer; /* Изменение указателя при наведении */
-}
-  
-  /* Стили для опций select */
-select option {
-    padding: 10px; /* Поля вокруг текста внутри опций */
-    font-size: 16px; /* Размер текста */
-}
-  
-  /* Стили для hover и focus */
-select:hover,
-select:focus {
-    border-color: #999; /* Цвет границы при наведении или фокусе */
-}
-  
-  /* Стили для hover опций */
-select option:hover {
-    background-color: #ddd; /* Цвет фона при наведении на опцию */
 }
 
-.user-data-form button {
-    width: 100%;
-    padding: 10px; /* Поля вокруг кнопки */
-    background-color: #007bff; /* Цвет фона кнопки */
-    color: #fff; /* Цвет текста кнопки */
-    border: none; /* Убираем границу кнопки */
-    border-radius: 5px; /* Скругление углов кнопки */
-    cursor: pointer; /* Указатель при наведении */
-    transition: background-color 0.3s ease; /* Плавное изменение цвета фона */
-    margin-top: 10px;
-}
-.user-data-form button:hover {
-    background-color: #0056b3; /* Измененный цвет фона при наведении */
+.product img:hover {
+    transform: scale(1.1); /* Увеличиваем изображение при наведении */
 }
 
-.cart-item img {
-    max-width: 150px; /* Максимальная ширина изображения */
-    height: auto; /* Автоматическая высота для поддержания пропорций */
-    margin-right: 10px; /* Отступ между изображением и текстом */
-    position: relative;
+.product:hover h4,
+.product:hover p {
+    background: repeating-conic-gradient(#b977b6 10%, #e9c2e2 20%, #00c2cb 20%, #00c2cb 30%);
+    -webkit-background-clip: text;
+    background-clip: text; /* Добавлено для совместимости */
+    -webkit-text-fill-color: transparent;
 }
-
-.cart-item {
-    position: relative;
+.product-item {
     display: inline-block;
+    align-items: center;
+    margin-bottom: 0px;
+    margin: 10px;
+}
+.product-item img{
+    margin-bottom: 0px;
+}
+.product-item:last-child {
+    margin-right: 0; /* Убираем отступ справа у последнего элемента .product-item */
 }
 
-.cart-item .item-image {
+.product-class{
+    display: none;
+}
+
+/*________________________________________________________________________________________*/
+
+.radio-input input {
+    display: none;
+}
+  
+.radio-input {
+    --container_width: 200px;
     position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 9999px;
+    background-color: #fff;
+    color: #000000;
+    width: var(--container_width);
+    overflow: hidden;
+    border: 1px solid rgba(53, 52, 52, 0.226);
+    font-family: "Abril Fatface", serif;
 }
-
-.cart-item .item-image img {
-    width: 200px; /* Размер фото товара */
-    height: auto;
+  
+.radio-input label {
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    font-weight: 600;
+    letter-spacing: -1px;
+    font-size: 14px;
 }
-
-.cart-item .cancel-overlay {
+  
+.selection {
     display: none;
     position: absolute;
-    top: 0;
+    height: 100%;
+    width: calc(var(--container_width) / 4);
+    z-index: 0;
     left: 0;
-    width: 20px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.5); /* Прозрачный белый фон */
-    text-align: center;
+    top: 0;
+    transition: .15s ease;
+}
+  
+.radio-input label:has(input:checked) {
+    color: #fff;
+}
+  
+.radio-input label:has(input:checked) ~ .selection {
+    background-color: rgb(21, 100, 219);
+    display: inline-block;
+}
+  
+.radio-input label:nth-child(1):has(input:checked) ~ .selection {
+    transform: translateX(calc(var(--container_width) * 0/4));
+ }
+  
+.radio-input label:nth-child(2):has(input:checked) ~ .selection {
+    transform: translateX(calc(var(--container_width) * 1/4));
+}
+  
+.radio-input label:nth-child(3):has(input:checked) ~ .selection {
+    transform: translateX(calc(var(--container_width) * 2/4));
+}
+  
+.radio-input label:nth-child(4):has(input:checked) ~ .selection {
+    transform: translateX(calc(var(--container_width) * 3/4));
 }
 
-.cart-item:hover .cancel-overlay {
+/*________________________________________________________________________________________*/
+
+.filters {
+    font-family: "Abril Fatface", serif;
+    display: flex;
+    flex-direction: column;
+    background-color: #fbfbfb;
+    border: 1px solid #000000; 
+    border-radius:30px; 
+    width: 60%;
+    margin: 0 auto;
+    padding: 25px;
+
+}
+
+.filters h2{
     display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
 }
-.cancel-overlay img {
-    width: 20px; /* Новая ширина изображения cancel.png */
-    height: auto; /* Автоматическая высота для поддержания пропорций */
+.filter-container select{
+    width: 200px;
+}
+
+.filter-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 10px;
+}
+
+.price-filter,
+.clothing-class-filter {
+    flex: 1; /* Распределение пространства между блоками */
+    margin-right: 1px;
+}
+
+.clothing-class-filter,
+.price-filter label {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 5px; /* Отступ между текстом и значением */
+    font-size: 20px;
+}
+
+
+.apply-button {
+    width: 250px; 
+    margin: 0 auto; 
+    display: block; 
+    margin-bottom: 15px;
+
+    appearance: none; 
+    background-color: transparent;
+    border: 2px solid #1A1A1A;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #3B3B3B;
+    cursor: pointer;
+    font-family: "Abril Fatface", serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    outline: none;
+    padding: 16px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation; 
+    will-change: transform;
+}
+
+.apply-button:hover{
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+/*________________________________________________________________________________________*/
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: transparent;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: transparent;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height:70px;
+    width: 70px;
+    border-radius: 50%;
+    background: url('logo-removebg-preview.png') no-repeat center center; 
+    background-size: contain;
+    cursor: pointer;
+    margin-top: -8px; /* Смещение ползунка */
 }
 /*________________________________________________________________________________________*/
 
-.notification {
-    display: none;
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: white;
-    padding: 15px;
-    border-radius: 5px;
-    z-index: 9999;
-}
-/*________________________________________________________________________________________*/
 
-.checkout-summary {
-    background-color: #f2f2f2; 
-    padding: 20px; /* Внутренние отступы */
-    border-radius: 5px; /* Закругленные углы */
-    margin-top: 20px; /* Отступ сверху */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень блока */
-    font-family: "Roboto", Arial, sans-serif;
-}
-
-.checkout-summary h2 {
-    margin-top: 0; 
-}
-
-.checkout-summary p {
-    margin-bottom: 10px;
-    font-family: "Roboto", Arial, sans-serif;
-}

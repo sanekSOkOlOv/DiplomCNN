@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='cart.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+    <script src="{{ url_for('static', filename='cart-scripts.js') }}"></script>
     <title>Shopping Cart</title>
 </head>
 <body>
@@ -16,9 +21,8 @@
             </a>
         </div>
         <div class="catalog">
-            <a href="#" class="catalog-link">Верхняя одежда (выше колена)</a>
-            <a href="#" class="catalog-link">Нижняя одежда (ниже колена)</a>
-            <a href="/cart" class="catalog-link">Корзина</a>
+            <a href="#" class="catalog-link">New products</a>
+            <a href="/" class="catalog-link">Shop</a>
         </div>
     </header>
 
@@ -26,7 +30,7 @@
 
     <div class="container">
         <div class="cart-items">
-            <h2>Корзина товаров</h2>
+            <h2 class="cart-title">Cart of your goods</h2>
             <div id="cart-items">
                 <!-- Здесь будет отображаться содержимое корзины -->
                 {% for item in cart %}
@@ -34,41 +38,45 @@
                         <div class="item-image">
                             <img src="{{ item.image }}" alt="{{ item.name }}">
                             <div class="cancel-overlay">
-                                <img src="{{ url_for('static', filename='cancel.png') }}" alt="Cancel">
+                                <img src="{{ url_for('static', filename='close.png') }}" alt="Cancel">
                             </div>
                         </div>
                         <h3>{{ item.name }}</h3>
-                        <p>Цена: ${{ item.price }}</p>
+                        <p class="p-price">${{ item.price }}</p>
+                        <p class="p-size">Size: {{ item.size }}</p>
                     </div>
                 {% endfor %}
             </div>
         </div>
         
         <!-- Форма для заполнения данных о пользователе -->
-        <div class="user-data-form">
-            <h2>Введите данные</h2>
-            <form action="/checkout" method="post">
-                <label for="postal_code">Почтовое отделение:</label>
-                <input type="text" id="postal_code" name="postal_code" required>
-                <label for="user_name">Имя:</label>
-                <input type="text" id="user_name" name="user_name" required>
-                <label for="user_name">Фамилия:</label>
-                <input type="text" id="surname" name="surname" required>
-                <label for="user_name">Телефон:</label>
-                <input type="text" id="phone" name="phone" required>
-                <label for="payment_method">Способ оплаты:</label>
-                <select id="payment_method" name="payment_method" required>
-                    <option value="cash">Наличными при получении</option>
-                    <option value="card">Банковской картой</option>
-                </select>
-                <button type="submit">Оформить заказ</button>
-            </form>
-        </div>
+            <div class="user-data-form">
+                <h2>Enter data</h2>
+                <form action="/checkout" method="post" id="search-form">
+                    <label for="user_name">Name:</label>
+                    <input type="text" id="user_name" name="user_name" required>
+                    <label for="surname">Surname:</label>
+                    <input type="text" id="surname" name="surname" required>
+                    <label for="phone">Telephone:</label>
+                    <input type="text" id="phone" name="phone" required>
+                    <label for="city">Find a post office:</label>
+                    <input type="text" id="city" name="city" placeholder="Enter your locality">
+                    <input list="descriptions" name="description" id="description">
+                    <datalist id="descriptions">
+                    </datalist>
+                    <label for="payment_method">Payment method:</label>
+                    <select id="payment_method" name="payment_method" required>
+                        <option value="cash">Cash upon receipt</option>
+                        <option value="card">By bank card</option>
+                    </select>
+                    <button type="submit">Checkout</button>
+                </form>
+            </div>
+        
 
         <div class="checkout-summary" data-priceall="{{ priceall }}">
-            <h2>Итого к оплате:</h2>
+            <h2>Total to be paid:</h2>
             <p>${{ priceall }}</p>
-            <!-- Здесь можно добавить дополнительную информацию, например, стоимость доставки -->
         </div>
     </div>
 
@@ -78,9 +86,9 @@
             <p>Ми – ваш надійний партнер у світі моди. Наша команда прагне надати вам найкращий вибір одягу, який підкреслить вашу унікальність та стиль. Ми ретельно відбираємо товари, щоб задовольнити ваші потреби та надати вам найкращі модні рішення. Наша мета - зробити вашу покупку приємною та зручною, а ваш образ стильним та впевненим.</p>
         </div>
         <div class="footer-block">
-            <h3>Каталог</h3>
-            <a href="#" class="catalog-link">Верхняя одежда (выше колена)</a>
-            <a href="#" class="catalog-link">Нижняя одежда (ниже колена)</a>
+            <h3>Catalog</h3>
+            <a href="#" class="catalog-link">New products</a>
+            <a href="#" class="catalog-link">Looking for a job</a>
         </div>
         <div class="footer-block">
             <h3>Соціальні мережі</h3>
@@ -92,5 +100,69 @@
         </div>
     </footer>
 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('search-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Останавливаем стандартное поведение формы
+    
+                const form = event.target;
+                const formData = new FormData(form);
+                
+                const phoneInput = document.getElementById('phone').value;
+                const phonePattern = /^\+?[0-9\s\-]+$/;
+    
+                if (!phonePattern.test(phoneInput)) {
+                    alert('Неверный формат телефона. Телефон должен содержать только цифры, пробелы, тире и может начинаться с +');
+                    return;
+                }
+    
+                // Дополнительная проверка на количество цифр в номере
+                const digitCount = phoneInput.replace(/\D/g, '').length;
+                if (digitCount < 10 || digitCount > 15) {
+                    alert('Номер телефона должен содержать от 10 до 15 цифр.');
+                    return;
+                }
+                // Собираем данные о товарах в корзине
+                const cartItems = [];
+                document.querySelectorAll('.cart-item').forEach(item => {
+                    const name = item.querySelector('h3').textContent;
+                    const price = item.querySelector('.p-price').textContent.replace('$', '');
+                    const size = item.querySelector('.p-size').textContent.replace('Size: ', '');
+                    cartItems.push({ name, price, size });
+                });
+    
+                // Получаем выбранное значение из списка почтовых отделений
+                const postOfficeInput = document.getElementById('description').value;
+    
+                // Добавляем данные о почтовом отделении в объект formData
+                formData.append('description', postOfficeInput);
+                
+                // Добавляем данные о товарах в корзине в объект formData
+                formData.append('cartItems', JSON.stringify(cartItems));
+    
+                fetch('/checkout', {
+                    method: 'POST',
+                    body: formData 
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    alert('Заказ оформлен'); // Показываем уведомление
+                    window.location.href = '/'; // Перенаправляем на начальную страницу
+                })
+                .catch(error => {
+                    console.error('Ошибка при отправке формы:', error);
+                });
+            });
+        });
+    </script>
+    
+    
 </body>
 </html>

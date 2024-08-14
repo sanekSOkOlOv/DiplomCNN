@@ -1,0 +1,336 @@
+[
+    {
+        "city": "Киев",
+        "user_name": "Alex",
+        "surname": "Sokolov",
+        "phone": "+380679001569",
+        "payment_method": "cash",
+        "cart_items": [
+            {
+                "name": "Kargo ZED           ",
+                "price": "24.99",
+                "size": "L"
+            },
+            {
+                "name": "Kargo ZED           ",
+                "price": "24.99",
+                "size": "L"
+            }
+        ],
+        "completed": false
+    },
+    {
+        "city": "Киев",
+        "user_name": "Fedor",
+        "surname": "Biba",
+        "phone": "+380679001569",
+        "payment_method": "card",
+        "cart_items": [
+            {
+                "name": "Kargo ZED           ",
+                "price": "24.99",
+                "size": "L"
+            },
+            {
+                "name": "T-Short Logo        ",
+                "price": "20.99",
+                "size": "L"
+            },
+            {
+                "name": "T-Short Logo        ",
+                "price": "20.99",
+                "size": "L"
+            }
+        ],
+        "completed": false
+    },
+    {
+        "city": "Киев",
+        "user_name": "Fedor",
+        "surname": "Biba",
+        "phone": "+380679001569",
+        "payment_method": "card",
+        "cart_items": [
+            {
+                "name": "Kargo ZED           ",
+                "price": "24.99",
+                "size": "L"
+            },
+            {
+                "name": "T-Short Logo        ",
+                "price": "20.99",
+                "size": "L"
+            },
+            {
+                "name": "T-Short Logo        ",
+                "price": "20.99",
+                "size": "L"
+            }
+        ],
+        "completed": false
+    },
+    {
+        "city": "Дунаевцы",
+        "user_name": "Alex",
+        "surname": "Sokolov",
+        "phone": "+380679001569",
+        "payment_method": "card",
+        "cart_items": [
+            {
+                "name": "NULLT-Short Biba    ",
+                "price": "10.99",
+                "size": "L"
+            },
+            {
+                "name": "NULLT-Short Biba    ",
+                "price": "10.99",
+                "size": "L"
+            }
+        ],
+        "completed": false
+    },
+    {
+        "city": "Киев",
+        "user_name": "Alex",
+        "surname": "Sokolov",
+        "phone": "+380679001569",
+        "payment_method": "cash",
+        "cart_items": [
+            {
+                "name": "NULLT-Short Biba    ",
+                "price": "10.99",
+                "size": "L"
+            },
+            {
+                "name": "T-Short Cards       ",
+                "price": "20.99",
+                "size": "L"
+            }
+        ],
+        "completed": false
+    },
+    {
+        "city": "Киев",
+        "user_name": "Alex",
+        "surname": "Sokolov",
+        "phone": "+380679002224",
+        "payment_method": "card",
+        "cart_items": [
+            {
+                "name": "NULLT-Short Biba    ",
+                "price": "10.99",
+                "size": "L"
+            },
+            {
+                "name": "T-Short Cards       ",
+                "price": "20.99",
+                "size": "L"
+            }
+        ],
+        "completed": false
+    },
+    {
+        "city": "Днепр",
+        "user_name": "Bodya",
+        "surname": "Donchik",
+        "phone": "+382203003534",
+        "payment_method": "cash",
+        "cart_items": [
+            {
+                "name": "Pullover Dragon King",
+                "price": "40.0",
+                "size": "L"
+            },
+            {
+                "name": "Jeans               ",
+                "price": "29.99",
+                "size": "L"
+            }
+        ],
+        "completed": false
+    },
+    {
+        "city": "Харьков",
+        "user_name": "Fedor",
+        "surname": "Sokolov",
+        "phone": "+382203003534",
+        "payment_method": "cash",
+        "cart_items": [
+            {
+                "name": "Classic Sport       ",
+                "price": "19.0",
+                "size": "L"
+            },
+            {
+                "name": "Big Baby Bag        ",
+                "price": "25.99",
+                "size": "L"
+            }
+        ],
+        "completed": false
+    },
+    {
+        "city": "Кропивницкий",
+        "user_name": "Alex",
+        "surname": "Sokolov",
+        "phone": "+380679001569",
+        "payment_method": "card",
+        "cart_items": "Big Baby Bag        , 25.99, L, T-Short Cards       , 20.99, L",
+        "completed": false
+    },
+    {
+        "city": "Киев",
+        "user_name": "Alex",
+        "surname": "Sokolov",
+        "phone": "+380679001569",
+        "payment_method": "cash",
+        "completed": false,
+        "cart_items": [
+            {
+                "name": "Big Baby Bag        ",
+                "price": "25.99",
+                "size": "L"
+            },
+            {
+                "name": "Pullover Dragon King",
+                "price": "40.0",
+                "size": "L"
+            }
+        ]
+    },
+    {
+        "city": "Киев",
+        "user_name": "Alex",
+        "surname": "Sokolov",
+        "phone": "+38 067 900 15 69",
+        "payment_method": "cash",
+        "completed": false,
+        "cart_item": {
+            "name": "Jeans               ",
+            "price": "29.99",
+            "size": "L"
+        }
+    },
+    {
+        "city": "Дунаевцы",
+        "user_name": "Bodya",
+        "surname": "Bober",
+        "phone": "+382203003534",
+        "payment_method": "cash",
+        "cart_items": [
+            {
+                "name": "T-Short Cards       ",
+                "price": "20.99",
+                "size": "L"
+            },
+            {
+                "name": "Jeans               ",
+                "price": "29.99",
+                "size": "L"
+            }
+        ],
+        "completed": false
+    },
+    {
+        "city": "Николаев",
+        "user_name": "Fedor",
+        "surname": "Sokolov",
+        "phone": "+380679001569",
+        "payment_method": "cash",
+        "cart_items": [
+            {
+                "name": "Jeans               ",
+                "price": "29.99",
+                "size": "L"
+            },
+            {
+                "name": "T-Short Logo        ",
+                "price": "20.99",
+                "size": "L"
+            }
+        ],
+        "completed": false
+    },
+    {
+        "city": "Дунаевцы",
+        "user_name": "Alex",
+        "surname": "Sokolov",
+        "phone": "+380679001569",
+        "payment_method": "cash",
+        "cart_items": [
+            {
+                "name": "T-Short Cards       ",
+                "price": "20.99",
+                "size": "L"
+            },
+            {
+                "name": "Kargo Mini          ",
+                "price": "24.99",
+                "size": "L"
+            }
+        ],
+        "total_price": 45.98,
+        "completed": false
+    },
+    {
+        "city": "Киев",
+        "user_name": "Alex",
+        "surname": "Bober",
+        "phone": "+380679001569",
+        "payment_method": "cash",
+        "description": "Відділення №15: вул. Малинська, 18 (Новобіличи)",
+        "cart_items": [
+            {
+                "name": "T-Short Cards       ",
+                "price": "20.99",
+                "size": "L"
+            },
+            {
+                "name": "Jeans               ",
+                "price": "29.99",
+                "size": "L"
+            }
+        ],
+        "total_price": 50.98,
+        "completed": false
+    },
+    {
+        "city": "Дунаевцы",
+        "user_name": "Alex",
+        "surname": "Sokolov",
+        "phone": "+380679001569",
+        "payment_method": "cash",
+        "description": "Відділення №2 (до 30 кг на одне місце): вул.Шевченка, 107а",
+        "cart_items": [
+            {
+                "name": "Jeans               ",
+                "price": "29.99",
+                "size": "L"
+            }
+        ],
+        "total_price": 29.99,
+        "completed": false
+    },
+    {
+        "city": "Тернополь",
+        "user_name": "Богдан",
+        "surname": "Тімонічев",
+        "phone": "+380676774675",
+        "payment_method": "cash",
+        "description": "Відділення №29 (до 30 кг на одне місце): вул. Богдана Хмельницького, 11А",
+        "cart_items": [
+            {
+                "name": "Kargo Mini          ",
+                "price": "24.99",
+                "size": "L"
+            },
+            {
+                "name": "Kagro Top           ",
+                "price": "24.99",
+                "size": "L"
+            }
+        ],
+        "total_price": 49.98,
+        "completed": false
+    }
+]
